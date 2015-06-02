@@ -25,6 +25,7 @@ public class Xonst {
 
 	public static String groovy ="groovy";
 	public static String dsl ="dsl";
+	public static String session ="session";
 
 	public static String path_groovy  = "/WEB-INF/groovy/";
 	public static String path_groovy_dsl  = "/WEB-INF/groovy/dsl/";

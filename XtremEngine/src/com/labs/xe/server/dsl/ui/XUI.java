@@ -26,6 +26,11 @@ public class XUI extends Base{
 	}
 	
 
+	public TextArea textArea(){
+		TextArea b = new TextArea(this);
+		return b;
+	}
+
 
 	public Button button(){
 		Button b = new Button(this);
@@ -106,7 +111,7 @@ public class XUI extends Base{
 	}
 
 	
-	public void update(String xid, Class<XUIButton> class1, String what,String value) {
+	public void update(String xid, Class class1, String what,String value) {
 		String type = class1.getSimpleName();
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);

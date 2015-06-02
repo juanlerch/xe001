@@ -1,28 +1,45 @@
+// create the window
 win = ui window
 caption "Demo"
 
-//-----------------------------
+
+
+// create the text and load de first demo script
+txt = ui textarea
+s = utl.loadSavedScript("demo/demo01.xe")
+text s
+
+set "xe_demo_text",xur
+
+// create the prev button
 pre=ui button 
 caption " <- Prev"
 onClick  begin
-     	     caption	xur.caption  + "!"
+    run "demo/prev.xe"
 end
-//-----------------------------
+
+// create the run button
 run = ui button
 caption " Run "
 onClick  begin
-	caption	xur.caption  + "!"
+	run "demo/run.xe"
 end
-//-----------------------------
+
+// create the next button
 next = ui button
 caption " Next ->"
 onClick  begin
-	caption	xur.caption  + "!"
+	    run "demo/next.xe"
 end
 
-//-----------------------------
-
+// add buttons to the windows
 go win
+center txt
 south pre
 south run
 south   next
+
+set "xe_demo_prev",""
+set "xe_demo_run", "demo/demo01.xe"
+set "xe_demo_next", "demo/demo02.xe"
+

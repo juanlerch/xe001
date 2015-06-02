@@ -1,7 +1,5 @@
 package com.labs.xe.client.ui;
 
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.ui.handler.ToServerHandler;
 
 public class XUIFactory {
@@ -24,7 +22,10 @@ public class XUIFactory {
 			b.show();
 			return b;
 		}
-
+		if (type.equalsIgnoreCase(XUITextArea.class.getSimpleName())){
+			XUITextArea b=  new XUITextArea();
+			return b;
+		}
 		else {
 			XUIHTML html = new XUIHTML();
 			html.setHTML("can't create : " + type);

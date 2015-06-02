@@ -108,8 +108,8 @@ public class XUIDockPanel extends XUIBase  {
 			  centerfpanel.setWidth("100%");
 			  dockPanel.add(north,DockPanel.NORTH);
 			  dockPanel.add(south,DockPanel.SOUTH);
-			  dockPanel.add(new HTML("west"),DockPanel.WEST);
-			  dockPanel.add(new HTML("east"),DockPanel.EAST);
+			  dockPanel.add(new HTML(""),DockPanel.WEST);
+			  dockPanel.add(new HTML(""),DockPanel.EAST);
 
 			  
 			  centerScroll.setWidget(this.center);

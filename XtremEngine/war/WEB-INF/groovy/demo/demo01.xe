@@ -1,11 +1,11 @@
-h = "center"
 b = ui button
-caption h
+caption "hello !"
+
 onClick  begin
-		 if  ("hola"== xur.caption)
-		     caption  "chau" 
+		 if  ("hello !"== xur.caption)
+		     caption  "bye!" 
 		else 
-		     caption  "hola" 
+		     caption  "hello !" 
 end
 
-update  xe_ui.view,h,b
+update  xe_ui.view,"center",b

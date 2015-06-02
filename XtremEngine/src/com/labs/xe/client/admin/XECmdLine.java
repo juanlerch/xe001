@@ -30,7 +30,7 @@ public class XECmdLine implements XUIEventHandler{
 		tool.addButton(this, "Create Button!", "CreateButton");
 		panel.add(html.getWidget());
 		tarea.setText("1 + 2");
-	}
+	} 
 	
 	@Override
 	public void notify(XUIEvent event) {

@@ -88,6 +88,7 @@ public class XGroovy implements Serializable{
 		
 		binding.setProperty(Xonst.groovy, groovy);
 		binding.setProperty(Xonst.dsl, server.getDsl());
+		binding.setProperty(Xonst.session, server.getSession());
 		
 		script = this.preProcessScript(script);
 

@@ -1,39 +1,46 @@
 package com.labs.xe.client.ui;
 
 import com.google.gwt.user.client.ui.TextArea;
+import com.labs.xe.client.dto.XEIATT;
 
-public class XUITextArea {
+public class XUITextArea extends XUIBase {
 	
-	TextArea widget = new TextArea();
+	TextArea textArea = new TextArea();
 	
 	
 	public XUITextArea() {
-		// TODO Auto-generated constructor stub
+		super.setWidget(textArea);
 	}
 	
 	
-	public String getText() {
-		return widget.getValue();
-	}
 
-
-	public TextArea getWidget() {
-		return widget;
-	}
-
-
-	public void setWidget(TextArea widget) {
-		this.widget = widget;
-	}
-
-
-	public void setText(String text) {
-		this.widget.setValue(text);
+	
+	
+	@Override
+	public void update(String name, XEIATT value) {
+		if ("text".equalsIgnoreCase(name)){
+			String svalue = (String) value.getValue();
+			this.textArea.setValue(svalue);
+		}
 		
 	}
-	
-	
-	
+
+
+
+
+
+	public void setText(String svalue) {
+		this.textArea.setValue(svalue);
+	}
+
+
+
+
+
+	public Object getText() {
+		
+		return this.textArea.getText();
+	}	
 	
 
 }

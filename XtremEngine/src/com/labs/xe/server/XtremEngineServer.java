@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIDTO;
@@ -23,6 +24,8 @@ public class XtremEngineServer implements Serializable{
 	Map<String,Base> dsl= new HashMap<String,Base>();
 	XUI xui = new XUI();
 
+	HttpSession session;
+	
 	public XtremEngineServer() {
 		 xgroovy = new XGroovy(this);
 	}
@@ -94,6 +97,17 @@ public class XtremEngineServer implements Serializable{
 	public void setXui(XUI xui) {
 		this.xui = xui;
 	}
+
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
+
 
 	
 }

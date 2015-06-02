@@ -10,6 +10,10 @@ button = {c=xe_ui.button()
            groovy.evaluate(s)
            c}
 
+textarea = {c=xe_ui.textArea()
+           s=utl.load("TextArea",c.xuid)
+           groovy.evaluate(s)
+           c}
 
 panel = {  c=xe_ui.panel()
            s=utl.load("Panel",c.xuid)

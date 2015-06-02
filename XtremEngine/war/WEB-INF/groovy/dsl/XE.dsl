@@ -1,5 +1,4 @@
-xe_saved = []
-xur = null
+
 //-------------------------------------------------//
 xe_run_dsl = {id,name-> 
               o = sdl.get(id)
@@ -23,8 +22,14 @@ run =  {a -> s = utl.loadSavedScript(a);
 
 
 go  =  {x -> xur = x}
-get  = {x -> c= xe_saved[x];c}
-set  = {x -> xe_saved[x] = xur }
+get  = {x -> c= session.getAttribute(x);
+        if (c==null) c=c=dsl.get(x);
+        c
+ }
+
+set  = {x,y -> if(x instanceof String ) { session.setAttribute(x,y);}
+               else {dsl.put(x,y)} 
+              }
 
 
 
