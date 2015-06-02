@@ -1,0 +1,28 @@
+win = ui window
+caption "Demo"
+
+//-----------------------------
+pre=ui button 
+caption " <- Prev"
+onClick  begin
+     	     caption	xur.caption  + "!"
+end
+//-----------------------------
+run = ui button
+caption " Run "
+onClick  begin
+	caption	xur.caption  + "!"
+end
+//-----------------------------
+next = ui button
+caption " Next ->"
+onClick  begin
+	caption	xur.caption  + "!"
+end
+
+//-----------------------------
+
+go win
+south pre
+south run
+south   next

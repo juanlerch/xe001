@@ -1,12 +1,18 @@
 package com.labs.xe.server;
 
+import java.io.PrintWriter;
+import java.io.Serializable;
+import java.io.StringWriter;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.labs.xe.server.xdb.XDB;
+import com.labs.xe.server.xdb.XDBEntity;
 
 
-public class XUtil {
+public class XUtil implements Serializable{
 
 
 	
@@ -18,6 +24,9 @@ public class XUtil {
 			this.configure();
 		}
 		
+		XDataSamplePeople sample1= new XDataSamplePeople();
+		sample1.configure();
+		
 	}
 
 	private void configure() {
@@ -27,6 +36,8 @@ public class XUtil {
 		
 		
 	}
+	
+	
 	
 	
 }

@@ -1,0 +1,66 @@
+h = "center"
+b = ui button
+caption h
+onClick  begin
+     caption  xur.caption + "!" 
+end
+
+update  xe_ui.view,h,b
+-----------------------------------------------------------------------
+h = "center"
+b = ui button
+caption h
+onClick  begin
+		 if  ("hola"== xur.caption)
+		     caption  "chau" 
+		else 
+		     caption  "hola" 
+end
+
+update  xe_ui.view,h,b
+
+ui window
+caption "Demo"
+center b
+-----------------------------------------------------------------------
+
+h = "center"
+b = ui button
+update  xe_ui.view,h,b
+
+-----------------------------------------------------------------------
+for (int t=0;t<100;t++){
+  ui button 
+  caption "Hola"+t
+}
+
+-----------------------------------------------------------------------
+b=xe_ui.button();
+b.setCaption("Hola");
+-----------------------------------------------------------------------
+groovy.evaluate( "button = {c=ui.button();c.setCaption('name')} ")
+groovy.evaluate("x2 =  {action  -> action() }")
+x2 button 
+-----------------------------------------------------------------------
+ groovy.evaluate( "button = {name->c=xe_ui.button();c} ")
+ groovy.evaluate("x2 =  {action,name -> c=action(); c.setCaption(name); }")
+ x2 button,"XYZ" 
+
+-----------------------------------------------------------------------
+mas =  {x1,x2 -> x1+x2}
+mas 1,2
+
+-----------------------------------------------------------------------
+show = { it }
+square_root = { Math.sqrt(it) }
+please =  {action-> [the: { what ->    [of: { n -> action(what(n)) }]  }]})
+please show the square_root of 100
+-----------------------------------------------------------------
+
+button = {c=xe_ui.button();c} 
+
+ui =  {action  -> xur = action(); xur=groovy.evaluate(xur.getGroovyContext()) }
+
+ui button 
+caption c
+----------------------------------------------------------------------

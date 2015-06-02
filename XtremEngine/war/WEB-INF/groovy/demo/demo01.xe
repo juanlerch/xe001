@@ -1,0 +1,11 @@
+h = "center"
+b = ui button
+caption h
+onClick  begin
+		 if  ("hola"== xur.caption)
+		     caption  "chau" 
+		else 
+		     caption  "hola" 
+end
+
+update  xe_ui.view,h,b

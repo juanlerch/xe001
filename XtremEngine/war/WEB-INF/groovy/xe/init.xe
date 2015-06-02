@@ -1,0 +1,3 @@
+xe_ui.view = null
+a = ui panel
+update a,"styleName","cw-DockPanel"
