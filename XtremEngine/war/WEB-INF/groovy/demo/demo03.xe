@@ -1,0 +1,16 @@
+win = ui window
+caption "Demo III"
+
+b = ui button
+caption "hello !"
+
+onClick  begin
+		 if  ("hello !"== xur.caption)
+		     caption  "bye!" 
+		else 
+		     caption  "hello !" 
+end
+
+
+go win
+center b

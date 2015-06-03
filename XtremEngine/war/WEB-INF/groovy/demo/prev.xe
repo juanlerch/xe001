@@ -1,0 +1,31 @@
+//save state in session
+
+
+s=get "xe_demo_run"
+
+if (s == "demo/demo01.xe") {
+	set "xe_demo_prev","" 
+	set "xe_demo_run" ,"demo/demo01.xe"
+	set "xe_demo_next","demo/demo02.xe"
+}
+else if (s == "demo/demo02.xe") {
+	set "xe_demo_prev","" 
+	set "xe_demo_run" ,"demo/demo01.xe"
+	set "xe_demo_next","demo/demo02.xe"
+}
+else if (s == "demo/demo03.xe") {
+	set "xe_demo_prev","demo/demo01.xe" 
+	set "xe_demo_run" ,"demo/demo02.xe"
+	set "xe_demo_next","demo/demo03.xe"
+}
+
+
+
+s=get "xe_demo_run"
+
+t2 = utl.loadSavedScript(s)
+
+t = get "xe_demo_text"
+
+t.setText(t2)
+

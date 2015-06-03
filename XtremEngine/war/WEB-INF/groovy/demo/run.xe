@@ -1,0 +1,3 @@
+s = get "xe_demo_run"
+
+run s
