@@ -38,8 +38,9 @@ public class XGroovy implements Serializable{
 		
 		String requestType = request.getName();
 		Binding binding = new Binding();
-		XUI ui = new XUI();
+		
 		binding.setProperty(Xonst.XE_UI, this.server.getXUI());
+		binding.setProperty(Xonst.XE_xtremEngineServer, this.server);
 		binding.setProperty(Xonst.ServletContext, context);
 		XDSLUtil util = new XDSLUtil(context);
 		binding.setProperty(Xonst.utl,util );		
@@ -66,7 +67,7 @@ public class XGroovy implements Serializable{
 			if (request.get(Xonst.SCRIPT_xui).getValue()!=null){
 				String id   =  request.get(Xonst.SCRIPT_xui).getValue().toString();
 				String name =  request.get(Xonst.SCRIPT_name).getValue().toString();
-				Base base = this.server.getDsl().get(id);
+				Base base = (Base) this.server.getSession().getAttribute(id);
 				binding.setProperty("xur", base);
 				String component = base.getClass().getSimpleName();
 				String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
@@ -87,19 +88,20 @@ public class XGroovy implements Serializable{
 		GroovyShell groovy = new GroovyShell(binding );
 		
 		binding.setProperty(Xonst.groovy, groovy);
-		binding.setProperty(Xonst.dsl, server.getDsl());
+		//binding.setProperty(Xonst.dsl, server.getDsl());
 		binding.setProperty(Xonst.session, server.getSession());
 		
 		script = this.preProcessScript(script);
+		
 
 		binding.setProperty(Xonst.xe_cur_script, script);
 		XDSLUtil util = (XDSLUtil)binding.getProperty(Xonst.utl);		
 		 
-		String fullScript = util.load( "XE", "") ;
+		String xeScript = util.load( "XE", "") ;
 
 			Object result =null;
 		try {
-			result = groovy.evaluate(fullScript );
+			result = groovy.evaluate(xeScript);
 		}
 		catch(Exception e){
 			System.out.println("Script Err:" + script);

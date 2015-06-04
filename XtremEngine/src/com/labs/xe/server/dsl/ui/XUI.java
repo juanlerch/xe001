@@ -3,6 +3,8 @@ package com.labs.xe.server.dsl.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.appengine.api.modules.ModulesService;
+import com.google.appengine.api.modules.ModulesServiceFactory;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIDTO;
@@ -17,12 +19,26 @@ public class XUI extends Base{
 	List<XEIDTO> events = new ArrayList<XEIDTO>();
 	
 	String s = "s"; //Servidor
-	long count = 1;
+	long count = 0;
 	
 	Base view ;
 	
-	public String getNextId(){
-		return s  + count++;
+	public XUI() {
+		this.xuid = getNextId(); 
+	}
+	
+	
+	
+	public synchronized String getNextId(){
+		String instance="intance_s00c61b117c4824b69c98957d7e8cc53db170f96c42";
+		try{
+		ModulesService modulesApi = ModulesServiceFactory.getModulesService();
+		instance = "_" + modulesApi.getCurrentInstanceId() + "_";
+		}
+		catch (Exception e) {
+			instance = "_no_instance_s00c61b117c4824b69c98957d7e8cc53db170f96c42_";
+		}
+		return s  +  instance  + count++;
 	}
 	
 

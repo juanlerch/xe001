@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import com.labs.xe.client.dto.XEDTOFactory;
-import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.server.xdb.XDB;
-import com.sun.xml.internal.ws.api.policy.PolicyResolver.ServerContext;
 
 public class XtremEngineServer implements Serializable{
 	
@@ -21,7 +18,7 @@ public class XtremEngineServer implements Serializable{
 	XDB     xdb = new XDB(); 
 	XUtil   util = new XUtil();
 	XEDTOFactory dtoFactory = new XEDTOFactory();
-	Map<String,Base> dsl= new HashMap<String,Base>();
+	//private Map<String,Base> dsl= new HashMap<String,Base>();
 	XUI xui = new XUI();
 
 	transient HttpSession session;
@@ -52,15 +49,6 @@ public class XtremEngineServer implements Serializable{
 
 
 
-
-	public Map<String, Base> getDsl() {
-		return dsl;
-	}
-
-
-	public void setDsl(Map<String, Base> dsl) {
-		this.dsl = dsl;
-	}
 
 
 	public void setXgroovy(XGroovy xgroovy) {
