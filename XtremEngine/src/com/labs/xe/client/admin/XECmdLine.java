@@ -9,6 +9,7 @@ import com.labs.xe.client.ui.XUIDialogBox;
 import com.labs.xe.client.ui.XUIDockPanel;
 import com.labs.xe.client.ui.XUIEvent;
 import com.labs.xe.client.ui.XUIEventHandler;
+import com.labs.xe.client.ui.XUIFactory;
 import com.labs.xe.client.ui.XUIHTML;
 import com.labs.xe.client.ui.XUITextArea;
 import com.labs.xe.client.ui.XUIToolbar;
@@ -25,10 +26,12 @@ public class XECmdLine implements XUIEventHandler{
 		this.service=service;
 		this.dialogBox = new XUIDialogBox("Command", panel);
 		panel.add(tool.getWidget(), DockPanel.NORTH);
-		tarea = tool.addTextArea();
+		tarea = new XUITextArea();//tool.addTextArea();
+		panel.add(tarea.getWidget());
 		tool.addButton(this, "Run!", "RunScript");
-		tool.addButton(this, "Create Button!", "CreateButton");
-		panel.add(html.getWidget());
+		tool.addButton(this, "Save as...", "saveAs");
+		tool.addButton(this, "New console!", "newConsole");
+		panel.add(html.getWidget(),DockPanel.SOUTH);
 		tarea.setText("1 + 2");
 	} 
 	
@@ -37,8 +40,11 @@ public class XECmdLine implements XUIEventHandler{
 		if (event.getValue().equalsIgnoreCase("RunScript")){
 			this.runScript(event);
 		}
-		if (event.getValue().equalsIgnoreCase("CreateButton")){
-			this.createButton(event);
+		if (event.getValue().equalsIgnoreCase("newConsole")){
+			XECmdLine newCLine = new XECmdLine(service);
+			
+			newCLine.show();
+			
 		}
 		
 	}

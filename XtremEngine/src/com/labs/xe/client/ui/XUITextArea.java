@@ -10,6 +10,7 @@ public class XUITextArea extends XUIBase {
 	
 	public XUITextArea() {
 		super.setWidget(textArea);
+		textArea.setWidth("100%");
 	}
 	
 	

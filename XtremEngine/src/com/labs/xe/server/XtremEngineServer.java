@@ -24,7 +24,7 @@ public class XtremEngineServer implements Serializable{
 	Map<String,Base> dsl= new HashMap<String,Base>();
 	XUI xui = new XUI();
 
-	HttpSession session;
+	transient HttpSession session;
 	
 	public XtremEngineServer() {
 		 xgroovy = new XGroovy(this);
