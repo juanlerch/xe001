@@ -1,6 +1,6 @@
 
 //-------------------------------------------------//
-xe_run_dsl = {id,name-> 
+xe_run_dsl_old = {id,name-> 
               o = sdl.get(id)
               s = o.get(name)  
               groovy.evaluate(s)
@@ -23,21 +23,22 @@ run =  {a -> s = utl.loadSavedScript(a);
 
 go  =  {x -> xur = x}
 get  = {x -> c= session.getAttribute(x);
-        if (c==null) c=c=dsl.get(x);
         c
  }
 
-set  = {x,y -> if(x instanceof String ) { session.setAttribute(x,y);}
-               else {dsl.put(x,y)} 
-              }
+set  = {x,y -> session.setAttribute(x,y);}
 
 
 
 demo = {run "/demo/demo.xe"}
 
 //------------------------------------------------------------//
+
 s = load "XUI"
 
 eval s
 
-eval xe_cur_script
+xresponse = eval xe_cur_script
+
+//session.setAttribute("xtremEngineServer",xtremEngineServer)
+xresponse

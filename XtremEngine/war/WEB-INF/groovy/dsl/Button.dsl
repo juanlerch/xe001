@@ -2,6 +2,8 @@
 caption = {caption->xur.setCaption(caption);xur}
 
 onClick = {
-    s->xur.setOnClick(s)
-    dsl.put('{xuid}',xur)
+    s->
+    set '{xuid}',xur
+    xur.setOnClick(s)
+    
 } 
