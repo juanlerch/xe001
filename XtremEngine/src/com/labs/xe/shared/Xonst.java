@@ -5,7 +5,8 @@ public class Xonst {
 	
 	                                             
 	public static final String ServletContext = "servletContext";
-
+	
+	public static String XE_xtremEngineServer = "xtremEngineServer";
 	public static String XE_UI = "xe_ui";
 	
 	public static String SCRIPT_RESULT = "SCRIPT_RESULT";
