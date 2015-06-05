@@ -173,6 +173,7 @@ public XUIBase getComponents(String xuid) {
 						{
 							root=o;
 							view=o;
+							RootPanel.get("xeMainDiv").clear();
 							RootPanel.get("xeMainDiv").add(o.getWidget());;		
 						}
 					}

@@ -1,3 +1,6 @@
-xe_ui.view = null
+
 a = ui panel
+
+setmainview a
+
 update a,"styleName","cw-DockPanel"

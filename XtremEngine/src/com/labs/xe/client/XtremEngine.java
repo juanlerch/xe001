@@ -2,6 +2,7 @@ package com.labs.xe.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.ui.XUIDockPanel;
@@ -32,7 +33,8 @@ public class XtremEngine implements EntryPoint {
 	XUIDockPanel xui = new XUIDockPanel();
 	
 	public void onModuleLoad() {
-		RootPanel.get("xeMainDiv").add(xui.getWidget());
+		HTML h = new HTML("loading  XE ...");
+		RootPanel.get("xeMainDiv").add(h);
 		/*xui.add(new HTML("cwDockPanelNorth1()"), DockPanel.NORTH);
 		xui.add(new HTML("cwDockPanelSouth1()"), DockPanel.SOUTH);
 		xui.add(new HTML("cwDockPanelEast()"), DockPanel.EAST);

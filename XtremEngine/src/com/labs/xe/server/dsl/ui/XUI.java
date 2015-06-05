@@ -19,9 +19,9 @@ public class XUI extends Base{
 	List<XEIDTO> events = new ArrayList<XEIDTO>();
 	
 	String s = "s"; //Servidor
-	long count = 0;
+	static long count = 0;
 	
-	Base view ;
+	//Base view ;
 	
 	public XUI() {
 		this.xuid = getNextId(); 
@@ -29,7 +29,7 @@ public class XUI extends Base{
 	
 	
 	
-	public synchronized String getNextId(){
+	static public synchronized String getNextId(){
 		String instance="intance_s00c61b117c4824b69c98957d7e8cc53db170f96c42";
 		try{
 		ModulesService modulesApi = ModulesServiceFactory.getModulesService();
@@ -38,7 +38,7 @@ public class XUI extends Base{
 		catch (Exception e) {
 			instance = "_no_instance_s00c61b117c4824b69c98957d7e8cc53db170f96c42_";
 		}
-		return s  +  instance  + count++;
+		return "s"  +  instance  + count++;
 	}
 	
 
@@ -55,9 +55,9 @@ public class XUI extends Base{
 	
 	public Panel panel(){
 		Panel b = new Panel(this);
-		if (view==null) {
+	/*	if (view==null) {
 			view = b;
-		}
+		}*/
 		return b;
 	}
 	

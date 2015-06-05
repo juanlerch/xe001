@@ -5,4 +5,5 @@ onClick  begin
 	     caption  "bye! " + xur.xuid 
 end
 
-update  xe_ui.view,"center",b
+x = get "xeMmainPanel"
+update  x,"center",b
