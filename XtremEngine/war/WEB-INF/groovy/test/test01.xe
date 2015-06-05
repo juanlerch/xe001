@@ -1,0 +1,8 @@
+b = ui button
+caption "hello ! " + xur.xuid
+
+onClick  begin
+	     caption  "bye! " + xur.xuid 
+end
+
+update  xe_ui.view,"center",b

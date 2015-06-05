@@ -1,0 +1,3 @@
+run "test/test01.xe"
+
+run "adm/showContext.xe"
