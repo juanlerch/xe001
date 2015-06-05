@@ -25,7 +25,7 @@ panel = {  c=xe_ui.panel()
 window = {
   		   c=xe_ui.dialogBox()
            s=utl.load("DialogBox",c.xuid)
-           0.evaluate(s)
+           groovy.evaluate(s)
            c
 }        
 
