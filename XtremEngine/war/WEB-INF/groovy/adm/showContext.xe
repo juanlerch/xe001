@@ -1,0 +1,6 @@
+ss ="<b> Session :</b> <br>"
+for (String s:session.getAttributeNames() ){
+         ss+=s + " -> " + session.getAttribute(s) + "<br>"; 
+}
+
+ss

@@ -135,7 +135,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	
 	public XtremEngineServer getXEServer(){
-
+        /*
 		final String name="xtremEngineServer";
 		
 		HttpServletRequest r = this.getThreadLocalRequest();
@@ -151,7 +151,12 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 		xeserver.setSession(session);
 		return xeserver  ;
-		
+		*/
+		HttpServletRequest r = this.getThreadLocalRequest();
+		HttpSession session = r.getSession(true);
+		XtremEngineServer xeserver =  new XtremEngineServer();
+		xeserver.setSession(session);
+		return xeserver;
 	}
 	
 	

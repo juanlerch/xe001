@@ -1,10 +1,13 @@
 package com.labs.xe.server;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import com.labs.xe.client.dto.XEDTOFactory;
+import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.server.xdb.XDB;
 

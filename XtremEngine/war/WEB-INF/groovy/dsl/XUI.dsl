@@ -7,7 +7,7 @@ update = {obj,prop,value->xe_ui.update(obj,prop,value)}
 
 button = {c=xe_ui.button()
            s=utl.load("Button",c.xuid)
-           groovy.evaluate(s)
+           groovy.evaluate(s)           
            c}
 
 textarea = {c=xe_ui.textArea()
@@ -28,3 +28,14 @@ window = {
            groovy.evaluate(s)
            c
 }        
+
+mainview = {
+          xur = get "xeMainView"
+          s = load xur.class.simpleName
+    	  eval s
+          xur
+} 
+
+setmainview = { a->
+	set "xeMainView", a
+} 

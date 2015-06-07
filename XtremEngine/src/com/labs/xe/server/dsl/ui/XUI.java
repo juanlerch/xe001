@@ -21,17 +21,15 @@ public class XUI extends Base{
 	String s = "s"; //Servidor
 	static long count = 0;
 	
-	Base view ;
+	//Base view ;
 	
 	public XUI() {
 		this.xuid = getNextId(); 
 	}
 	
-	String getNextId(){
-		return XUI.getNextId2();
-	}
 	
-	static public synchronized String getNextId2(){
+	
+	static public synchronized String getNextId(){
 		String instance="intance_s00c61b117c4824b69c98957d7e8cc53db170f96c42";
 		try{
 		ModulesService modulesApi = ModulesServiceFactory.getModulesService();
@@ -57,9 +55,9 @@ public class XUI extends Base{
 	
 	public Panel panel(){
 		Panel b = new Panel(this);
-		if (view==null) {
+	/*	if (view==null) {
 			view = b;
-		}
+		}*/
 		return b;
 	}
 	

@@ -1,11 +1,10 @@
 b = ui button
-caption "hello !"
+caption "hello ! " + xur.xuid
 
 onClick  begin
-		 if  ("hello !"== xur.caption)
-		     caption  "bye!" 
-		else 
-		     caption  "hello !" 
+	     caption  "bye! " + xur.xuid 
 end
 
-update  xe_ui.view,"center",b
+ui mainview
+center b
+

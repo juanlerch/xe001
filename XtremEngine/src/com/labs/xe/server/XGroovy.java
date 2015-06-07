@@ -72,6 +72,7 @@ public class XGroovy implements Serializable{
 				String component = base.getClass().getSimpleName();
 				String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
 				script  +=  "groovy.evaluate(s)\n"; 
+				script  +=  "xur= get '"+id + "'\n";
 				script += "groovy.evaluate(xur."+name+")\n";
 				return runScript(context,binding,script);
 			}
@@ -115,7 +116,8 @@ public class XGroovy implements Serializable{
 		XEIDTO dto = server.getDtoFactory().create(Xonst.SCRIPT_RESULT);
 		dto.add(Xonst.SCRIPT_result, server.getDtoFactory().createAttString(result));
 		
-		XUI ui = (XUI) binding.getVariable(Xonst.XE_UI);
+		//XUI ui = (XUI) binding.getVariable(Xonst.XE_UI);
+		XUI ui = this.server.getXui();
 		for (XEIDTO d : ui.getEvents()){
 			dto.addRel(XUIManager.XUI_UPDATES, d);
 		}
