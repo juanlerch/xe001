@@ -1,0 +1,10 @@
+b = ui button
+caption "hello ! " + xur.xuid
+
+onClick  begin
+	     caption  "bye! " + xur.xuid 
+end
+
+ui mainview
+center b
+
