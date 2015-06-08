@@ -122,9 +122,14 @@ public class XGroovy
      
 	public void set(String key,Object value){
 		
-		this.session.setAttribute(key, value);
+		
 		this.session.setAttribute("CURRENT_TIME", System.currentTimeMillis());
 		sessionBack.put(key, value);
+		
+		this.session.setAttribute(key, value);
+		while (this.session.getAttribute(key) == null){
+			this.session.setAttribute(key, value);
+		}
 	}
 	
 	/****************************************************************/
