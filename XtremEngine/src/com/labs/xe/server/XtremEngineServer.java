@@ -11,7 +11,7 @@ import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.server.xdb.XDB;
 
-public class XtremEngineServer implements Serializable{
+public class XtremEngineServer {
 	
 	//ServletContext serverContext;
 	XGroovy xgroovy;
@@ -19,12 +19,12 @@ public class XtremEngineServer implements Serializable{
 	XUtil   util = new XUtil();
 	XEDTOFactory dtoFactory = new XEDTOFactory();
 	//private Map<String,Base> dsl= new HashMap<String,Base>();
-	XUI xui = new XUI();
+	private XUI xui2 = new XUI(true);
 
-	transient HttpSession session;
+	HttpSession session;
 	
 	public XtremEngineServer() {
-		 xgroovy = new XGroovy(this);
+		 xgroovy = new XGroovy(this,xui2);
 	}
 	
 	
@@ -70,21 +70,6 @@ public class XtremEngineServer implements Serializable{
 		this.dtoFactory = dtoFactory;
 	}
 
-
-	public XUI getXUI() {
-		return this.xui;
-	}
-
-
-
-	public XUI getXui() {
-		return xui;
-	}
-
-
-	public void setXui(XUI xui) {
-		this.xui = xui;
-	}
 
 
 	public HttpSession getSession() {

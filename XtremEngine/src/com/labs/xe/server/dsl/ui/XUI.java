@@ -16,14 +16,14 @@ public class XUI extends Base{
 
 	private XEDTOFactory factory = new XEDTOFactory();
 	
-	List<XEIDTO> events = new ArrayList<XEIDTO>();
+	private List<XEIDTO> events1 = new ArrayList<XEIDTO>();
 	
 	String s = "s"; //Servidor
 	static long count = 0;
 	
 	//Base view ;
 	
-	public XUI() {
+	public XUI(boolean a ) {
 		this.xuid = getNextId(); 
 	}
 	
@@ -72,7 +72,7 @@ public class XUI extends Base{
 	
 	
 	public List<XEIDTO> getEvents() {
-		return events;
+		return events1;
 	}
 	
 
@@ -87,7 +87,7 @@ public class XUI extends Base{
 		dto.add(XUIManager.XUI_update_name,factory.createAttString(what));
 		dto.add(XUIManager.XUI_update_value, factory.createAttString(value.xuid));
 
-		this.events.add(dto); 
+		this.events1.add(dto); 
 		
 	}
 
@@ -108,7 +108,7 @@ public class XUI extends Base{
 		dto.add(XUIManager.XUI_Type,factory.createAttString(type));
 		dto.add(XUIManager.XUI_isNew,factory.createAttString(isNew));
 		
-		this.events.add(dto);
+		this.events1.add(dto);
 		
 	}
 
@@ -122,7 +122,7 @@ public class XUI extends Base{
 		dto.add(XUIManager.XUI_update_name,factory.createAttString(what));
 		dto.add(XUIManager.XUI_update_value, factory.createAttString(value));
 
-		this.events.add(dto);
+		this.events1.add(dto);
 		
 	}
 
@@ -138,7 +138,7 @@ public class XUI extends Base{
 		dto.add(XUIManager.XUI_update_name,factory.createAttString(what));
 		
 		dto.add(XUIManager.XUI_update_value, factory.createAttString(value));
-		this.events.add(dto);
+		this.events1.add(dto);
 		
 	}
 
