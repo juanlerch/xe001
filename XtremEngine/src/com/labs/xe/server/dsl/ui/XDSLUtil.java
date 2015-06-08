@@ -61,8 +61,8 @@ public class XDSLUtil {
 }
 	
 	
-	public  String load (String className,String xuid){
-			String file  = className + ".dsl" ; 
+	public  String load (String className){
+			String file  = className + ".dsl" ;  
 		    BufferedReader reader;
 		    InputStream i =  context.getResourceAsStream(Xonst.path_groovy_dsl + className + ".dsl");
 			try { 
@@ -79,7 +79,7 @@ public class XDSLUtil {
 		    reader.close();
 		    
 		    String s = stringBuilder.toString();
-		    s = s.replace("{xuid}",xuid);
+		    //s = s.replace("{xuid}",xuid);
 		    return s ;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

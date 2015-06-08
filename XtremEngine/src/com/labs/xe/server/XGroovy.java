@@ -14,13 +14,15 @@ import com.labs.xe.server.dsl.ui.XDSLUtil;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.shared.Xonst;
 
-public class XGroovy implements Serializable{
+public class XGroovy 
+{
 	
 	XtremEngineServer server;
-	
+	XUI xui;
 
-	public XGroovy(XtremEngineServer server) {
+	public XGroovy(XtremEngineServer server,XUI ui) {
 		this.server = server;
+		this.xui=ui;
 		
 		
 	}
@@ -38,11 +40,13 @@ public class XGroovy implements Serializable{
 		
 		String requestType = request.getName();
 		Binding binding = new Binding();
+
+		XDSLUtil util = new XDSLUtil(context);
 		
-		binding.setProperty(Xonst.XE_UI, this.server.getXUI());
+		binding.setProperty(Xonst.XE_UI, this.xui);
 		binding.setProperty(Xonst.XE_xtremEngineServer, this.server);
 		binding.setProperty(Xonst.ServletContext, context);
-		XDSLUtil util = new XDSLUtil(context);
+
 		binding.setProperty(Xonst.utl,util );		
 		binding.setProperty("xgroovy", this);
 
@@ -70,10 +74,14 @@ public class XGroovy implements Serializable{
 				Base base = (Base) this.server.getSession().getAttribute(id);
 				binding.setProperty("xur", base);
 				String component = base.getClass().getSimpleName();
-				String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
+				/*String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
 				script  +=  "groovy.evaluate(s)\n"; 
 				script  +=  "xur= get '"+id + "'\n";
-				script += "groovy.evaluate(xur."+name+")\n";
+				script += "groovy.evaluate(xur."+name+")\n";*/
+				XDSLUtil xutil = new XDSLUtil(context);
+				String script  = xutil.load(component);
+				script  +=  "xur= get '"+id + "'\n"; 
+				script += "eval(xur."+name+")\n";
 				return runScript(context,binding,script);
 			}
 		}
@@ -89,16 +97,15 @@ public class XGroovy implements Serializable{
 		GroovyShell groovy = new GroovyShell(binding );
 		
 		binding.setProperty(Xonst.groovy, groovy);
-		//binding.setProperty(Xonst.dsl, server.getDsl());
 		binding.setProperty(Xonst.session, server.getSession());
 		
 		script = this.preProcessScript(script);
 		
-
 		binding.setProperty(Xonst.xe_cur_script, script);
+
 		XDSLUtil util = (XDSLUtil)binding.getProperty(Xonst.utl);		
 		 
-		String xeScript = util.load( "XE", "") ;
+		String xeScript = util.load( "XE") ;
 
 			Object result =null;
 		try {
@@ -117,11 +124,10 @@ public class XGroovy implements Serializable{
 		dto.add(Xonst.SCRIPT_result, server.getDtoFactory().createAttString(result));
 		
 		//XUI ui = (XUI) binding.getVariable(Xonst.XE_UI);
-		XUI ui = this.server.getXui();
-		for (XEIDTO d : ui.getEvents()){
+		for (XEIDTO d : xui.getEvents()){
 			dto.addRel(XUIManager.XUI_UPDATES, d);
 		}
-		ui.getEvents().clear();
+		xui.getEvents().clear();
 		
 				
 		return dto;

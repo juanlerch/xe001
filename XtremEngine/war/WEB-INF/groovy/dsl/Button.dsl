@@ -1,9 +1,11 @@
 
-caption = {caption->xur.setCaption(caption);xur}
+caption = {caption->xur.setCaption(caption)
+		   update xur,"caption",caption
+           xur
+          }
 
 onClick = {
     s->
-    set '{xuid}',xur
+    set xur.xuid,xur
     xur.setOnClick(s)
-    
 } 
