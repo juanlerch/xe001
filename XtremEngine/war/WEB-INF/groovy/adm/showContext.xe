@@ -1,6 +1,13 @@
 ss ="<b> Session :</b> <br>"
-for (String s:session.getAttributeNames() ){
-         ss+=s + " -> " + session.getAttribute(s) + "<br>"; 
+for (String s:xe.session.getAttributeNames() ){
+         ss+=s + " -> " + xe.session.getAttribute(s) + "<br>"; 
+}
+
+
+ss += "<b> Session BK :</b> <br>"
+
+for (String s:xe.sessionBack.keySet() ){
+         ss+=s + " -> " + xe.sessionBack.get(s) + "<br>"; 
 }
 
 ss

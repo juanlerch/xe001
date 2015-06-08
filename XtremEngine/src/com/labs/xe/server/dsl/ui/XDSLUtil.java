@@ -20,13 +20,7 @@ public class XDSLUtil {
 		this.context=context;
 	}
 	
-	public String preProcessScript(String script){
-		
-		script=script.replace("begin", "'''");
-		script=script.replace("end", "'''");
-		return script; 
-		
-	}
+
 	
 	public  String loadSavedScript ( String path){
 		 

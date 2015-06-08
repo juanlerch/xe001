@@ -2,9 +2,6 @@ package com.labs.xe.server.dsl.ui;
 
 import com.labs.xe.client.ui.XUIButton;
 import com.labs.xe.client.ui.XUIDialogBox;
-import com.labs.xe.shared.Xonst;
-
-import groovy.lang.GroovyShell;
 
 public class DialogBox extends Base {
 

@@ -1,20 +1,20 @@
 eval = {a->
-        a = xgroovy.preProcessScript(a)
-        r = groovy.evaluate(a) 
+        a = xe.preProcessScript(a)
+        r = xe.evaluate(a) 
         r}               
 
-load = { p -> s = utl.load(p) }
+load = { p -> s = xe.load(p) }
 
-run =  {a -> s = utl.loadSavedScript(a);
+run =  {a -> s = xe.util.loadSavedScript(a);
                   eval s 
        } 
 
 go  =  {x -> xur = x}
-get  = {x -> c= session.getAttribute(x);
+get  = {x -> c= xe.get(x);
         c
  }
 
-set  = {x,y -> session.setAttribute(x,y);}
+set  = {x,y -> xe.set(x,y);}
 
 
 

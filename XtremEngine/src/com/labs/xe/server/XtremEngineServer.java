@@ -23,7 +23,8 @@ public class XtremEngineServer {
 
 	HttpSession session;
 	
-	public XtremEngineServer() {
+	public XtremEngineServer(HttpSession session) {
+		this.session = session;
 		 xgroovy = new XGroovy(this,xui2);
 	}
 	
