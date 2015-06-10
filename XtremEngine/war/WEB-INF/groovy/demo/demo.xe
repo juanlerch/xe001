@@ -6,7 +6,7 @@ caption "Demo"
 
 // create the text and load de first demo script
 txt = ui textarea
-s = utl.loadSavedScript("demo/demo01.xe")
+s = xe.util.loadSavedScript("demo/demo01.xe")
 text s
 
 set "xe_demo_text",xur

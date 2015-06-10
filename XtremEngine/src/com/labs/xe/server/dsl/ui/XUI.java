@@ -8,9 +8,6 @@ import com.google.appengine.api.modules.ModulesServiceFactory;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIDTO;
-import com.labs.xe.client.ui.XUIButton;
-
-import groovy.lang.GroovyShell;
 
 public class XUI extends Base{
 

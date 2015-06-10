@@ -4,8 +4,10 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEIDTO;
@@ -16,39 +18,41 @@ import com.labs.xe.shared.Xonst;
 
 public class XGroovy 
 {
+	public static java.util.Map<String,Object> sessionBack = new HashMap<String,Object>();
 	
-	XtremEngineServer server;
-	XUI xui;
-
+	 XtremEngineServer server;
+	 XUI               ui;
+	 GroovyShell       groovy;
+	 HttpSession       session;
+	 ServletContext    context;
+	 XDSLUtil           util;
+	
+	private XGroovy() {
+		 // TODO Auto-generated constructor stub
+	}
 	public XGroovy(XtremEngineServer server,XUI ui) {
 		this.server = server;
-		this.xui=ui;
-		
-		
+		this.ui=ui;
+		this.session = server.getSession();
 	}
 	
 	
-	public String preProcessScript(String script){
-		
-		script=script.replace("begin", "'''");
-		script=script.replace("end", "'''");
-		return script; 
-		
-	}
+	
 	
 	public XEIDTO run(ServletContext context,XEIDTO request){
+		this.context=context;
+		util = new XDSLUtil(context);
 		
 		String requestType = request.getName();
 		Binding binding = new Binding();
 
-		XDSLUtil util = new XDSLUtil(context);
-		
-		binding.setProperty(Xonst.XE_UI, this.xui);
-		binding.setProperty(Xonst.XE_xtremEngineServer, this.server);
-		binding.setProperty(Xonst.ServletContext, context);
 
-		binding.setProperty(Xonst.utl,util );		
-		binding.setProperty("xgroovy", this);
+		//binding.setProperty(Xonst.XE_UI, this.xui);
+		binding.setProperty(Xonst.XE_xtremEngineServer, this);
+		//binding.setProperty(Xonst.ServletContext, context);
+
+		//binding.setProperty(Xonst.utl,util );		
+		//binding.setProperty("xgroovy", this);
 
 		if (Xonst.REQUEST_TYPE_RUN_SAVED_SCRIPT.equalsIgnoreCase(requestType)){
 			String saved_script_name   = request.get(Xonst.saved_script_name).getValue().toString();
@@ -91,19 +95,57 @@ public class XGroovy
 		
 	}
 	
+	/***************************************************************/
+	
+	
+	public String load(String className){
+		return this.util.load(className);
+	}
+
+	
+	public Object evaluate(String script){
+		return this.groovy.evaluate(script);
+	}
+
+	public String preProcessScript(String script){
+		
+		script=script.replace("begin", "'''");
+		script=script.replace("end", "'''");
+		return script; 
+		
+	}
+	
+    public Object get(String key){
+		return this.session.getAttribute(key);
+		
+	}
+     
+	public void set(String key,Object value){
+		
+		
+		this.session.setAttribute("CURRENT_TIME", System.currentTimeMillis());
+		sessionBack.put(key, value);
+		
+		this.session.setAttribute(key, value);
+		while (this.session.getAttribute(key) == null){
+			this.session.setAttribute(key, value);
+		}
+	}
+	
+	/****************************************************************/
 
 	private XEIDTO  runScript(ServletContext context,Binding binding , String script){
 			
-		GroovyShell groovy = new GroovyShell(binding );
+		groovy = new GroovyShell(binding);
 		
-		binding.setProperty(Xonst.groovy, groovy);
-		binding.setProperty(Xonst.session, server.getSession());
+		//binding.setProperty(Xonst.groovy, groovy);
+		//binding.setProperty(Xonst.session, server.getSession());
 		
 		script = this.preProcessScript(script);
 		
 		binding.setProperty(Xonst.xe_cur_script, script);
 
-		XDSLUtil util = (XDSLUtil)binding.getProperty(Xonst.utl);		
+	//	XDSLUtil util = (XDSLUtil)binding.getProperty(Xonst.utl);		
 		 
 		String xeScript = util.load( "XE") ;
 
@@ -123,11 +165,12 @@ public class XGroovy
 		XEIDTO dto = server.getDtoFactory().create(Xonst.SCRIPT_RESULT);
 		dto.add(Xonst.SCRIPT_result, server.getDtoFactory().createAttString(result));
 		
-		//XUI ui = (XUI) binding.getVariable(Xonst.XE_UI);
-		for (XEIDTO d : xui.getEvents()){
+		
+		for (XEIDTO d : ui.getEvents()){
 			dto.addRel(XUIManager.XUI_UPDATES, d);
 		}
-		xui.getEvents().clear();
+		
+		ui.getEvents().clear();
 		
 				
 		return dto;

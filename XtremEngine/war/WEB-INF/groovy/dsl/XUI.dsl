@@ -2,30 +2,30 @@
 ui =  { action  -> xur = action(); xur } 
 
 
-update = {obj,prop,value->xe_ui.update(obj,prop,value)}
+update = {obj,prop,value->xe.ui.update(obj,prop,value)}
 
 
-button = {c=xe_ui.button()
+button = {c=xe.ui.button()
            s= load "Button"
-           groovy.evaluate(s)           
+           xe.evaluate(s)           
            c}
 
-textarea = {c=xe_ui.textArea()
+textarea = {c=xe.ui.textArea()
            s= load "TextArea"
-           groovy.evaluate(s)
+           xe.evaluate(s)
            c}
 
-panel = {  c=xe_ui.panel()
+panel = {  c=xe.ui.panel()
            s= load "Panel"
-           groovy.evaluate(s)
+           xe.evaluate(s)
            c
         }
 
 
 window = {
-  		   c=xe_ui.dialogBox()
+  		   c=xe.ui.dialogBox()
            s= load "DialogBox"
-           groovy.evaluate(s)
+           xe.evaluate(s)
            c
 }        
 

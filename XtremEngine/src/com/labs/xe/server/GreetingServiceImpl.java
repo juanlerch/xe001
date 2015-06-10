@@ -154,7 +154,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		*/
 		HttpServletRequest r = this.getThreadLocalRequest();
 		HttpSession session = r.getSession(true);
-		XtremEngineServer xeserver =  new XtremEngineServer();
+		XtremEngineServer xeserver =  new XtremEngineServer(session);
 		xeserver.setSession(session);
 		return xeserver;
 	}

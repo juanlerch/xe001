@@ -23,7 +23,7 @@ else if (s == "demo/demo03.xe") {
 
 s=get "xe_demo_run"
 
-t2 = utl.loadSavedScript(s)
+t2 = xe.util.loadSavedScript(s)
 
 t = get "xe_demo_text"
 
