@@ -1,8 +1,26 @@
+<<<<<<< HEAD
 3A976161243E2746F3AAB3F9471E8D07.cache.js
+=======
+4A55D98993AA8EF2E8659F90C0B4DF3F.cache.js
+user.agent safari
+
+6E9778109DA0138096F252C672A6A8B5.cache.js
+user.agent ie8
+
+AE3F84671F23D5BFE33DA3008C713295.cache.js
+user.agent ie10
+
+CD2DFF9ECB0434708B1C68C47D0FDBBD.cache.js
+>>>>>>> branch 'master' of https://github.com/juanlerch/xe001.git
 user.agent ie9
 
+<<<<<<< HEAD
 ACE29A8CBE041DD3104EBA425FE99BD6.cache.js
 user.agent ie8
+=======
+EA4F4FC3BF56B7087712F4C973387BEC.cache.js
+user.agent gecko1_8
+>>>>>>> branch 'master' of https://github.com/juanlerch/xe001.git
 
 E89E87BCF8D8B59E76447E0FE1B27CE4.cache.js
 user.agent safari
