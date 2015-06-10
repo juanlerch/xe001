@@ -27,5 +27,7 @@ t2 = xe.util.loadSavedScript(s)
 
 t = get "xe_demo_text"
 
-t.setText(t2)
+go t
+
+text t2
 

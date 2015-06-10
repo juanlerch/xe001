@@ -2,7 +2,7 @@
 ui =  { action  -> xur = action(); xur } 
 
 
-update = {obj,prop,value->xe.ui.update(obj,prop,value)}
+update = {prop,value->xe.ui.update(xur,prop,value)}
 
 
 button = {c=xe.ui.button()

@@ -1,6 +1,6 @@
 
 caption = {caption->xur.setCaption(caption)
-		   update xur,"caption",caption
+		   update "caption",caption
            xur
           }
 

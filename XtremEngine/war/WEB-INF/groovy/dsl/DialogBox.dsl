@@ -1,12 +1,12 @@
 
 caption = {caption->xur.setCaption(caption);xur}
 
-north =  {x -> update xur,"north",x }
+north =  {x -> update "north",x }
 
-south =  {x -> update xur,"south",x }
+south =  {x -> update "south",x }
 
-east = {x -> update xur,"east",x}
+east = {x -> update "east",x}
 
-west = {x -> update xur,"west",x}
+west = {x -> update "west",x}
 
-center = {x -> update xur,"center",x}
+center = {x -> update "center",x}
