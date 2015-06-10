@@ -1,6 +1,6 @@
 
-a = ui panel
+ui panel
 
-setmainview a
+setmainview xur
 
-update a,"styleName","cw-DockPanel"
+update "styleName","cw-DockPanel"
