@@ -1,5 +1,7 @@
 
-caption = {caption->xur.setCaption(caption);xur}
+caption = {caption->xur.setCaption(caption)
+		   update "caption",caption
+		   xur}
 
 north =  {x -> update "north",x }
 

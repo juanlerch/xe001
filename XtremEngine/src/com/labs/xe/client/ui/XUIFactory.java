@@ -26,6 +26,10 @@ public class XUIFactory {
 			XUITextArea b=  new XUITextArea();
 			return b;
 		}
+		if (type.equalsIgnoreCase(XUIHTML.class.getSimpleName())){
+			XUIHTML b=  new XUIHTML();
+			return b;
+		}
 		else {
 			XUIHTML html = new XUIHTML();
 			html.setHTML("can't create : " + type);

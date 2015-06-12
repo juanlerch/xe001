@@ -6,12 +6,28 @@ import java.io.Serializable;
 
 public class XEDTOFactory implements XEIDTOFactory,Serializable{
 
+	public static XEDTOFactory newInstance(){
+		return new XEDTOFactory(); 
+	}
+	
+	
 	@Override
 	public XEIDTO create(String name) {
 		XEDTO dto = new XEDTO(name);
 		return dto;
-	}
+	} 
 	
+	
+	@Override
+	public XEIATT createAttDTO(XEIDTO value) {
+		
+		XEATT_XDTO as = new XEATT_XDTO();
+		
+		as.setValue(value);
+		
+		return as;
+	}
+
 	
 	@Override
 	public XEIATT createAttListOfString(String[] anArray) {

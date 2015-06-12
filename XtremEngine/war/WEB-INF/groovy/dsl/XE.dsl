@@ -22,12 +22,16 @@ get  = {x -> c= xe.get(x);
 
 set  = {x,y -> xe.set(x,y);}
 
-
-
+instance = {dto->
+          x = xe_ui.dto(false)
+          x
+         }
 
 demo = {run "/demo/demo.xe"}
 
 //------------------------------------------------------------//
+
+
 
 s = load "XUI"
 

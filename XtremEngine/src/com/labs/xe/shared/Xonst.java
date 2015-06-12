@@ -14,6 +14,8 @@ public class Xonst {
 	public static String SCRIPT_DSL_SESSION = "SCRIPT_DSL_SESSION";
 	public static String SCRIPT_SERVER = "SCRIPT_SERVER ";
 	
+	public static String XE_GLOBALS  =  "XE_GLOBALS";
+	public static String XE_GLOBALS_CHANGES  =  "XE_GLOBALS_CHANGES";
 	
 	public static String SCRIPT_xui = "xui";
 	public static String SCRIPT_name = "name";

@@ -1,16 +1,12 @@
-win = ui window
-caption "Demo III"
+h = ui html
 
-b = ui button
-caption "hello !"
+html begin 
+           <h1> Title 1 </h1>
 
-onClick  begin
-		 if  ("hello !"== xur.caption)
-		     caption  "bye!" 
-		else 
-		     caption  "hello !" 
+           Hello  <b> WORLD!!!</b>
+
 end
 
+ui mainview
+center h
 
-go win
-center b

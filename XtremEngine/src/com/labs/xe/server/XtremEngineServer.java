@@ -1,13 +1,9 @@
 package com.labs.xe.server;
 
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import com.labs.xe.client.dto.XEDTOFactory;
-import com.labs.xe.server.dsl.ui.Base;
+import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.server.xdb.XDB;
 
@@ -19,13 +15,13 @@ public class XtremEngineServer {
 	XUtil   util = new XUtil();
 	XEDTOFactory dtoFactory = new XEDTOFactory();
 	//private Map<String,Base> dsl= new HashMap<String,Base>();
-	private XUI xui2 = new XUI(true);
+	private XUI xui = new XUI();
 
-	HttpSession session;
+	XEIDTO globals;
 	
-	public XtremEngineServer(HttpSession session) {
-		this.session = session;
-		 xgroovy = new XGroovy(this,xui2);
+	public XtremEngineServer(XEIDTO globals) {
+		this.globals = globals;
+		 xgroovy = new XGroovy(this,xui);
 	}
 	
 	
@@ -72,15 +68,17 @@ public class XtremEngineServer {
 	}
 
 
-
-	public HttpSession getSession() {
-		return session;
+	public XEIDTO getGlobals() {
+		return globals;
 	}
 
 
-	public void setSession(HttpSession session) {
-		this.session = session;
+	public void setGlobals(XEIDTO globals) {
+		this.globals = globals;
 	}
+
+
+
 
 
 	

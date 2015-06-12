@@ -8,6 +8,11 @@ import com.google.appengine.api.modules.ModulesServiceFactory;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIDTO;
+import com.labs.xe.client.ui.XUIButton;
+import com.labs.xe.client.ui.XUIDialogBox;
+import com.labs.xe.client.ui.XUIDockPanel;
+import com.labs.xe.client.ui.XUIHTML;
+import com.labs.xe.client.ui.XUITextArea;
 
 public class XUI extends Base{
 
@@ -20,7 +25,7 @@ public class XUI extends Base{
 	
 	//Base view ;
 	
-	public XUI(boolean a ) {
+	public XUI() {
 		this.xuid = getNextId(); 
 	}
 	
@@ -40,26 +45,46 @@ public class XUI extends Base{
 	
 
 	public TextArea textArea(){
-		TextArea b = new TextArea(this);
+		TextArea b = new TextArea();
+		
+		b.xuid = XUI.getNextId();
+		this.update(b.xuid,XUITextArea.class,true);
+
 		return b;
 	}
+	
+	public HTML HTML(){
+		HTML b = new HTML();
+		b.xuid = XUI.getNextId();
+		this.update(b.xuid,XUIHTML.class,true);
 
+		return b;
+	}
+	
 
-	public Button button(){
-		Button b = new Button(this);
+	public Button button(boolean isNew){
+		Button b = new Button();
+		b.xuid = XUI.getNextId();
+		if (isNew) 
+			{
+				this.update(b.xuid,XUIButton.class,true);
+			}
 		return b;
 	}
 	
 	public Panel panel(){
-		Panel b = new Panel(this);
-	/*	if (view==null) {
-			view = b;
-		}*/
+		Panel b = new Panel();
+
+		b.xuid = XUI.getNextId();
+		this.update(b.xuid,XUIDockPanel.class,true);
 		return b;
 	}
 	
 	public DialogBox dialogBox(){
-		DialogBox dialog = new DialogBox(this);
+		DialogBox dialog = new DialogBox();
+		dialog.xuid = XUI.getNextId();
+		this.update(dialog.xuid,XUIDialogBox.class,true);
+
 		
 		return dialog;
 	}

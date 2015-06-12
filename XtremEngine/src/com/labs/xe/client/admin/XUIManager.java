@@ -30,6 +30,7 @@ public class XUIManager implements ClickHandler{
 	private static GreetingServiceAsync service;
 	private static XUIManager instance;
 	public static String XUI_UPDATES = "XUI_UPDATES";
+	
 	public static String XUI_id = "XUI_xid";
 	public static String XUI_Type = "XUI_xType";
 	public static String XUI_isNew = "XUI_isNew";
@@ -38,6 +39,7 @@ public class XUIManager implements ClickHandler{
 	
 	long count = 1;
 	Map<String,XUIBase> components= new HashMap<String,XUIBase>();
+	XEIDTO globals = XEDTOFactory.newInstance().create(Xonst.XE_GLOBALS);
 	
 	XUIBase root; // root of the ui. first component created
 	XUIBase view; // cursor to current component.
@@ -148,6 +150,17 @@ public XUIBase getComponents(String xuid) {
 		
 	}
 
+	public void globalsUpdates(XEIDTO dto){
+		
+		if (dto==null) return ;
+		
+		List<XEIDTO> globs = dto.getRel(XUIManager.XUI_UPDATES);
+		for (XEIDTO g : globs){
+			XEIATT<XEIDTO> a = XEDTOFactory.newInstance().createAttDTO(g);
+			this.globals.add(g.getName(), a);
+		}
+	
+	}
 	public void uiUpdates(XEIDTO dto){
 		
 		if (dto==null) return ;
@@ -194,6 +207,8 @@ public XUIBase getComponents(String xuid) {
 		}
 	}
 	
-	
+	public XEIDTO getGlobals() {
+		return globals;
+	}	
 	
 }

@@ -1,15 +1,20 @@
 package com.labs.xe.server;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
+
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.labs.xe.client.GreetingService;
+import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.client.ui.XUIBase;
 import com.labs.xe.client.ui.XUIButton;
@@ -114,7 +119,13 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void save(XEIDTO dto) {
 		try {
-			XDB xdb =  this.getXEServer().getXdb();
+			XEIDTO g = null;
+			XEIATT<XEIDTO> a = dto.get(Xonst.XE_GLOBALS);
+			
+			if (a!=null) {
+				 g = (XEIDTO) a.getValue();
+			}
+			XDB xdb =  this.getXEServer(g).getXdb();
 			xdb.save(dto);
 		
 		}
@@ -127,14 +138,16 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public XEIDTO createInstance(String type) {
-		XDB xdb =  this.getXEServer().getXdb();
+		XEIDTO g = null;
+		//todo:reemplar por generic request
+		XDB xdb =  this.getXEServer(g).getXdb();
 		XEIDTO dto = xdb.createInstance(type);
 
 		return dto;
 	}
 	
 	
-	public XtremEngineServer getXEServer(){
+	public XtremEngineServer getXEServer(XEIDTO globals){
         /*
 		final String name="xtremEngineServer";
 		
@@ -152,17 +165,23 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		xeserver.setSession(session);
 		return xeserver  ;
 		*/
-		HttpServletRequest r = this.getThreadLocalRequest();
-		HttpSession session = r.getSession(true);
-		XtremEngineServer xeserver =  new XtremEngineServer(session);
-		xeserver.setSession(session);
+		
+		
+	
+		XtremEngineServer xeserver =  new XtremEngineServer(globals);
+		
 		return xeserver;
 	}
 	
 	
 	@Override
 	public XEIDTO request(XEIDTO request) {
-		return this.getXEServer().getXgroovy().run(getServletContext(),request);	
+		XEIDTO g = null;
+		XEIATT<XEIDTO> a = request.get(Xonst.XE_GLOBALS);
+		if (a!=null) {
+			 g = (XEIDTO) a.getValue();
+		}
+		return this.getXEServer(g).getXgroovy().run(getServletContext(),request);	
 	}
 	
 	

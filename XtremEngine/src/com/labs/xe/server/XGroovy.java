@@ -4,13 +4,27 @@ import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import com.google.appengine.api.taskqueue.DeferredTask;
+import com.google.appengine.api.taskqueue.Queue;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+import com.google.gwt.dev.util.DefaultTextOutput;
 import com.labs.xe.client.admin.XUIManager;
+import com.labs.xe.client.dto.XEDTOFactory;
+import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
+import com.labs.xe.client.dto.XEIDTOFactory;
 import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XDSLUtil;
 import com.labs.xe.server.dsl.ui.XUI;
@@ -21,19 +35,21 @@ public class XGroovy
 	public static java.util.Map<String,Object> sessionBack = new HashMap<String,Object>();
 	
 	 XtremEngineServer server;
-	 XUI               ui;
-	 GroovyShell       groovy;
-	 HttpSession       session;
-	 ServletContext    context;
-	 XDSLUtil           util;
-	
-	private XGroovy() {
-		 // TODO Auto-generated constructor stub
-	}
+	 XUI                 ui; 
+	 GroovyShell         groovy;
+	 XEIDTO  globals;
+	 XEIDTO  globalsChanges;
+	 ServletContext      context;
+	 XDSLUtil            util;
+		XEIDTOFactory dtoFactory = new XEDTOFactory();		
+
+
 	public XGroovy(XtremEngineServer server,XUI ui) {
-		this.server = server;
+		this.server = server; 
 		this.ui=ui;
-		this.session = server.getSession();
+		this.globals = server.getGlobals();
+		this.globalsChanges = dtoFactory .create(Xonst.XE_GLOBALS_CHANGES);
+
 	}
 	
 	
@@ -75,7 +91,7 @@ public class XGroovy
 			if (request.get(Xonst.SCRIPT_xui).getValue()!=null){
 				String id   =  request.get(Xonst.SCRIPT_xui).getValue().toString();
 				String name =  request.get(Xonst.SCRIPT_name).getValue().toString();
-				Base base = (Base) this.server.getSession().getAttribute(id);
+				Base base = (Base) this.server.getGlobals().get(id);
 				binding.setProperty("xur", base);
 				String component = base.getClass().getSimpleName();
 				/*String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
@@ -116,20 +132,16 @@ public class XGroovy
 	}
 	
     public Object get(String key){
-		return this.session.getAttribute(key);
+		return this.globals.get(key);
 		
 	}
+    
+
      
-	public void set(String key,Object value){
-		
-		
-		this.session.setAttribute("CURRENT_TIME", System.currentTimeMillis());
-		sessionBack.put(key, value);
-		
-		this.session.setAttribute(key, value);
-		while (this.session.getAttribute(key) == null){
-			this.session.setAttribute(key, value);
-		}
+	public void set(String key,XEIDTO value){
+		XEIATT<XEIDTO > svalue = dtoFactory.createAttDTO(value);
+		this.globals.add(key, svalue);
+		this.globalsChanges.add(key, svalue);
 	}
 	
 	/****************************************************************/
@@ -165,13 +177,18 @@ public class XGroovy
 		XEIDTO dto = server.getDtoFactory().create(Xonst.SCRIPT_RESULT);
 		dto.add(Xonst.SCRIPT_result, server.getDtoFactory().createAttString(result));
 		
-		
+		/*Events to UI*/
 		for (XEIDTO d : ui.getEvents()){
 			dto.addRel(XUIManager.XUI_UPDATES, d);
 		}
 		
 		ui.getEvents().clear();
-		
+
+		/*Globals to UI*/
+		for (XEIDTO d : ui.getEvents()){
+			dto.addRel(XUIManager.XUI_UPDATES, d);
+		}
+
 				
 		return dto;
 	}

@@ -5,22 +5,25 @@ import com.labs.xe.client.dto.XEIATT;
 
 public class XUIHTML extends XUIBase {
 	
-	
+	HTML html;
 	
 	public XUIHTML() {
-		setWidget(new HTML());
+		html = new HTML();
+		setWidget(html);
 	}
 	
 	
-	public void setHTML(String html) {
-		HTML html1 = (HTML)this.getWidget();
-		html1.setHTML(html);
+	public void setHTML(String html1) {
+		html.setHTML(html1);
 	}
 	
 	
 	@Override
 	public void update(String name, XEIATT value) {
 		
+		if (name.equalsIgnoreCase("HTML")){
+			this.setHTML("" +value.getValue());
+		}
 		
 	}
 	

@@ -9,11 +9,16 @@ public interface XEIDTOFactory /*extends AutoBeanFactory */{
 	
 	XEIDTO create (String name);
 	
+	XEIDTO createSimpleValue(String name, Object value);
+	
 	XEIATT createAttString(Object object);
 
 	XEIATT createAttListOfString(String[] object);
 
-	XEIDTO createSimpleValue(String name, Object value);
+	XEIATT createAttDTO(XEIDTO value);
+	
+	
+	
 	
 	
 }

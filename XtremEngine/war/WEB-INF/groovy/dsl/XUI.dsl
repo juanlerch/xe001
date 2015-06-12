@@ -4,11 +4,15 @@ ui =  { action  -> xur = action(); xur }
 
 update = {prop,value->xe.ui.update(xur,prop,value)}
 
-
-button = {c=xe.ui.button()
-           s= load "Button"
+html =   { c=xe.ui.HTML()
+           s= load "HTML"
            xe.evaluate(s)           
            c}
+
+button = {c=xe.ui.button(true)
+          s= load "Button"
+          xe.evaluate(s)           
+          c}
 
 textarea = {c=xe.ui.textArea()
            s= load "TextArea"
@@ -30,7 +34,8 @@ window = {
 }        
 
 mainview = {
-          xur = get "xeMainView"
+          dto = get "xeMainView"
+          xur = instance dto
           s = load xur.class.simpleName
     	  eval s
           xur
