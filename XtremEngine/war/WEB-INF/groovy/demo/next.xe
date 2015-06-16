@@ -1,9 +1,14 @@
-//save state in session
 
-demo = get "Demo"
-s = demo.get("xe_demo_run").value
+d =  get "Demo"
 
+d.getEntryKey()
+
+s = d.get("xe_demo_run")
+s= s.value
+
+xur = d
 if (s == "demo/demo01.xe") {
+        
 	att "xe_demo_prev","demo/demo01.xe" 
 	att "xe_demo_run" ,"demo/demo02.xe"
 	att "xe_demo_next","demo/demo03.xe"
@@ -14,10 +19,13 @@ else if (s == "demo/demo02.xe") {
 	att "xe_demo_next","demo/demo04.xe"
 }
 
+xur["xe_demo_run"]
 
 
-s = demo.get("xe_demo_run").value
 
+s = d.get("xe_demo_run").value
+
+s
 t2 = xe.util.loadSavedScript(s)
 
 t = get "xe_demo_text"
@@ -26,4 +34,4 @@ go t
 
 text t2
 
-
+set "Demo",d

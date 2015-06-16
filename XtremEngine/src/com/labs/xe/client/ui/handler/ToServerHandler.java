@@ -38,6 +38,7 @@ public class ToServerHandler implements XUIEventHandler{
 			@Override
 			public void onSuccess(XEIDTO result) {
 				XUIManager.getInstance().uiUpdates(result);
+				XUIManager.getInstance().globalsUpdates(result);
 			}
 			
 			@Override
