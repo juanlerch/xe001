@@ -78,11 +78,16 @@ public class XUIManager implements ClickHandler{
 		XEIDTO request = dtoFactory.create(Xonst.REQUEST_TYPE_RUN_SAVED_SCRIPT);
 		request.add(Xonst.saved_script_name, dtoFactory.createAttString(Xonst.INIT_SCRIPT_PATH));
 		
+		XEDTOFactory factory = new XEDTOFactory();
+		XEIATT  g = factory.createAttDTO( XUIManager.getInstance().getGlobals());
+		request.add(Xonst.XE_GLOBALS,g);
+		
 		service.request(request ,new AsyncCallback<XEIDTO>() {
 			
 			@Override
 			public void onSuccess(XEIDTO result) {
 				uiUpdates(result);
+				globalsUpdates(result);
 			}
 			
 			@Override
@@ -150,14 +155,16 @@ public XUIBase getComponents(String xuid) {
 		
 	}
 
-	public void globalsUpdates(XEIDTO dto){
+	public void globalsUpdates(XEIDTO dtoResponse){
 		
-		if (dto==null) return ;
+		if (dtoResponse==null) return ;
 		
-		List<XEIDTO> globs = dto.getRel(XUIManager.XUI_UPDATES);
-		for (XEIDTO g : globs){
-			XEIATT<XEIDTO> a = XEDTOFactory.newInstance().createAttDTO(g);
-			this.globals.add(g.getName(), a);
+		XEIATT<XEIDTO> changesAtt = dtoResponse.get(Xonst.XE_GLOBALS_CHANGES);
+		XEIDTO changesDTO = changesAtt.getValue();
+		
+		for (String key : changesDTO.getEntryKey()){
+			XEIATT<XEIDTO> cAtt = changesDTO.get(key);
+			this.globals.add(key, cAtt);
 		}
 	
 	}
@@ -178,7 +185,8 @@ public XUIBase getComponents(String xuid) {
 					String isNew = (String) aisNew.getValue();
 					XUIBase  o =null;
 					//if isNew
-					if ("true".equalsIgnoreCase(isNew)){
+					o = this.components.get(xuid);
+					if (o==null || "true".equalsIgnoreCase(isNew)){
 						o = XUIFactory.create(type);
 						o.setXid(xuid);
 						this.components.put(xuid, o);

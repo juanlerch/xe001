@@ -43,6 +43,8 @@ public class Xonst {
 	public static String REQUEST_TYPE_RUN_SAVED_SCRIPT = "REQUEST_TYPE_RUN_SAVED_SCRIPT";
 	
 	public static String INIT_SCRIPT_PATH = "/xe/init.xe";
+
+	public static String xuid="xuid";
 	
 	
 	

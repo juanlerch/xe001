@@ -11,7 +11,7 @@ run =  {a -> s = xe.util.loadSavedScript(a);
        } 
 
 go  =  {x -> xur = x
-             s = load xur.class.simpleName 
+             s = load xur.name
              eval s
              xur
              }
@@ -22,10 +22,12 @@ get  = {x -> c= xe.get(x);
 
 set  = {x,y -> xe.set(x,y);}
 
-instance = {dto->
-          x = xe_ui.dto(false)
-          x
-         }
+dto = { name-> xur = xe.createDTO(name); xur}
+
+att  = {name,value-> x = xe.createATT(xur,name,value);x}
+
+rel = {name,value-> x = xe.createREL(xur,name,value);x}
+
 
 demo = {run "/demo/demo.xe"}
 

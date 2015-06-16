@@ -13,6 +13,7 @@ import com.labs.xe.client.ui.XUIDialogBox;
 import com.labs.xe.client.ui.XUIDockPanel;
 import com.labs.xe.client.ui.XUIHTML;
 import com.labs.xe.client.ui.XUITextArea;
+import com.labs.xe.shared.Xonst;
 
 public class XUI extends Base{
 
@@ -113,6 +114,21 @@ public class XUI extends Base{
 		
 	}
 
+	public void update(XEIDTO base,String what, XEIDTO value) {
+		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
+		 
+		dto.add(XUIManager.XUI_id,factory.createAttString(base.get(Xonst.xuid)));
+		
+		String  class1 = base.getClass().getSimpleName();;
+		dto.add(XUIManager.XUI_Type,factory.createAttString(class1 ));
+		dto.add(XUIManager.XUI_isNew,factory.createAttString(false));
+		dto.add(XUIManager.XUI_update_name,factory.createAttString(what));
+		dto.add(XUIManager.XUI_update_value, factory.createAttString(value.get(Xonst.xuid)));
+
+		this.events1.add(dto); 
+		
+	}
+	
 	public void update(Base base,String what, String value) {
 		String xid = base.xuid; 
 		String class1 = base.getClass().getSimpleName();
@@ -120,7 +136,12 @@ public class XUI extends Base{
 		
 	}
 
+	public void update(XEIDTO dto,String what, String value) {
+		String xid = dto.get(Xonst.xuid).toString(); 
+		String class1 = dto.getName();
+		this.update(xid, class1,what,value); 
 		
+	}	
 	public void update(String xid, Class class1, boolean isNew) {
 		String type = class1.getSimpleName();
 		
@@ -134,6 +155,19 @@ public class XUI extends Base{
 		
 	}
 
+	public void update(String xid, String class1, boolean isNew) {
+		String type = class1;
+		
+		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
+		
+		dto.add(XUIManager.XUI_id,factory.createAttString(xid));
+		dto.add(XUIManager.XUI_Type,factory.createAttString(type));
+		dto.add(XUIManager.XUI_isNew,factory.createAttString(isNew));
+		
+		this.events1.add(dto);
+		
+	}
+	
 	public void update(String xid, String class1, String what,String value) {
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);

@@ -1,22 +1,22 @@
 //save state in session
 
-
-s=get "xe_demo_run"
+demo = get "Demo"
+s = demo.get("xe_demo_run").value
 
 if (s == "demo/demo01.xe") {
-	set "xe_demo_prev","demo/demo01.xe" 
-	set "xe_demo_run" ,"demo/demo02.xe"
-	set "xe_demo_next","demo/demo03.xe"
+	att "xe_demo_prev","demo/demo01.xe" 
+	att "xe_demo_run" ,"demo/demo02.xe"
+	att "xe_demo_next","demo/demo03.xe"
 }
 else if (s == "demo/demo02.xe") {
-	set "xe_demo_prev","demo/demo02.xe" 
-	set "xe_demo_run" ,"demo/demo03.xe"
-	set "xe_demo_next","demo/demo04.xe"
+	att "xe_demo_prev","demo/demo02.xe" 
+	att "xe_demo_run" ,"demo/demo03.xe"
+	att "xe_demo_next","demo/demo04.xe"
 }
 
 
 
-s=get "xe_demo_run"
+s = demo.get("xe_demo_run").value
 
 t2 = xe.util.loadSavedScript(s)
 

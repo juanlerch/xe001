@@ -48,7 +48,7 @@ public class XGroovy
 		this.server = server; 
 		this.ui=ui;
 		this.globals = server.getGlobals();
-		this.globalsChanges = dtoFactory .create(Xonst.XE_GLOBALS_CHANGES);
+		this.globalsChanges = dtoFactory.create(Xonst.XE_GLOBALS_CHANGES);
 
 	}
 	
@@ -90,10 +90,13 @@ public class XGroovy
 		if (Xonst.SCRIPT_DSL_SESSION.equalsIgnoreCase(requestType)){
 			if (request.get(Xonst.SCRIPT_xui).getValue()!=null){
 				String id   =  request.get(Xonst.SCRIPT_xui).getValue().toString();
-				String name =  request.get(Xonst.SCRIPT_name).getValue().toString();
-				Base base = (Base) this.server.getGlobals().get(id);
+				XEIDTO d1 = (XEIDTO) request.get(Xonst.XE_GLOBALS).getValue();
+				XEIATT<XEIDTO> d2 = d1.get(id);
+						
+				String name =  d2.getValue().get(Xonst.SCRIPT_name).toString();
+				XEIDTO base = (XEIDTO) this.globals.get(id).getValue();
 				binding.setProperty("xur", base);
-				String component = base.getClass().getSimpleName();
+				String component = base.getName();
 				/*String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
 				script  +=  "groovy.evaluate(s)\n"; 
 				script  +=  "xur= get '"+id + "'\n";
@@ -101,7 +104,7 @@ public class XGroovy
 				XDSLUtil xutil = new XDSLUtil(context);
 				String script  = xutil.load(component);
 				script  +=  "xur= get '"+id + "'\n"; 
-				script += "eval(xur."+name+")\n";
+				script += "eval(xur."+name+".value)\n";
 				return runScript(context,binding,script);
 			}
 		}
@@ -112,6 +115,40 @@ public class XGroovy
 	}
 	
 	/***************************************************************/
+
+	
+	public String xid(){
+		return XUI.getNextId();
+	}
+	
+	public XEIDTO createDTO(String name){
+		XEIDTO dto = this.dtoFactory.create(name);
+		return dto;
+	}
+
+	public XEIATT createATT(XEIDTO dto,String attribute,Object value){
+		XEIATT a = null;
+		if (value instanceof String){
+			a = dtoFactory.createAttString(value);
+		} 
+		else if (value instanceof XEIDTO){
+			a = dtoFactory.createAttDTO((XEIDTO) value);
+		}
+		else
+		{
+			a = dtoFactory.createAttString(value.toString());
+		}
+		dto.add(attribute, a);
+		return a;
+	}
+	
+	public XEIDTO createREL(XEIDTO dto,String attribute,XEIDTO value){
+
+		dto.addRel(attribute, value);
+		return dto;
+	}
+
+
 	
 	
 	public String load(String className){
@@ -120,6 +157,7 @@ public class XGroovy
 
 	
 	public Object evaluate(String script){
+		System.out.println("Eval:\n\n " + script);
 		return this.groovy.evaluate(script);
 	}
 
@@ -132,7 +170,8 @@ public class XGroovy
 	}
 	
     public Object get(String key){
-		return this.globals.get(key);
+    	XEIATT a = this.globals.get(key);
+		return a.getValue();
 		
 	}
     
@@ -184,10 +223,8 @@ public class XGroovy
 		
 		ui.getEvents().clear();
 
-		/*Globals to UI*/
-		for (XEIDTO d : ui.getEvents()){
-			dto.addRel(XUIManager.XUI_UPDATES, d);
-		}
+		XEIATT a = dtoFactory.createAttDTO(this.globalsChanges);
+		dto.add(Xonst.XE_GLOBALS_CHANGES, a);
 
 				
 		return dto;

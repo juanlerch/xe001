@@ -4,6 +4,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.labs.xe.client.GreetingServiceAsync;
 import com.labs.xe.client.dto.XEDTOFactory;
+import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.client.ui.XUIDialogBox;
 import com.labs.xe.client.ui.XUIDockPanel;
@@ -64,6 +65,10 @@ public class XECmdLine implements XUIEventHandler{
 		
 		dto.add(Xonst.SCRIPT_script,factory.createAttString(tarea.getText()));
 		
+		
+		XEIATT  g = factory.createAttDTO( XUIManager.getInstance().getGlobals());
+		dto.add(Xonst.XE_GLOBALS,g);
+		
 		service.request(dto, new AsyncCallback<XEIDTO>() {
 			
 			@Override
@@ -71,6 +76,7 @@ public class XECmdLine implements XUIEventHandler{
 				String shtml = "" +result.get(Xonst.SCRIPT_result).getValue();
 				html.setHTML(shtml);
 				XUIManager.getInstance().uiUpdates(result);
+				XUIManager.getInstance().globalsUpdates(result);
 			}
 			
 			@Override

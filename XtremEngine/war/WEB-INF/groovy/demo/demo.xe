@@ -39,7 +39,9 @@ south pre
 south run
 south   next
 
-set "xe_demo_prev",""
-set "xe_demo_run", "demo/demo01.xe"
-set "xe_demo_next", "demo/demo02.xe"
+d = dto "Demo"
+att "xe_demo_prev",""
+att "xe_demo_run", "demo/demo01.xe"
+att "xe_demo_next", "demo/demo02.xe"
 
+set "Demo",d

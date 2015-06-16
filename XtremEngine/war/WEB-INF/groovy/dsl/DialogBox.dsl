@@ -1,7 +1,8 @@
-
-caption = {caption->xur.setCaption(caption)
+caption = {caption->
+           att    "caption",caption
 		   update "caption",caption
-		   xur}
+           xur
+          }
 
 north =  {x -> update "north",x }
 

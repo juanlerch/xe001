@@ -1,3 +1,4 @@
-s = get "xe_demo_run"
+demo = get "Demo"
+s = demo.get("xe_demo_run").value
 
 run s
