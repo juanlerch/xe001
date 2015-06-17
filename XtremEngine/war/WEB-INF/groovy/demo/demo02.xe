@@ -12,7 +12,7 @@ onClick  begin
 		     caption  "hello !" 
 end
 
-
+set xur.xuid.value,xur
 go win
 center b
 

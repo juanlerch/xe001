@@ -126,6 +126,17 @@ public class XGroovy
 		return dto;
 	}
 
+	public boolean isGlobal(XEIDTO dto){
+		XEIATT att =  dto.get(Xonst.xuid);
+		if (att==null) return false;
+		
+		String xuid = (String) att.getValue();
+		
+		if (xuid != null && this.globals.get(xuid)!=null){
+			return true;
+		}
+		return false;
+	}
 	public XEIATT createATT(XEIDTO dto,String attribute,Object value){
 		XEIATT a = null;
 		if (value instanceof String){
@@ -139,6 +150,10 @@ public class XGroovy
 			a = dtoFactory.createAttString(value.toString());
 		}
 		dto.add(attribute, a);
+		if (isGlobal(dto)){
+			String xuid = dto.get(Xonst.xuid).getValue().toString();
+			this.globalsChanges.add(xuid, dtoFactory.createAttDTO(dto));
+		}
 		return a;
 	}
 	
