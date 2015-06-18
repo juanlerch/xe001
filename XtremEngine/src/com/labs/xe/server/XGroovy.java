@@ -33,7 +33,7 @@ import com.labs.xe.shared.Xonst;
 public class XGroovy 
 {
 	public static java.util.Map<String,Object> sessionBack = new HashMap<String,Object>();
-	
+	public boolean debug=false;
 	 XtremEngineServer server;
 	 XUI                 ui; 
 	 GroovyShell         groovy;
@@ -170,9 +170,13 @@ public class XGroovy
 		return this.util.load(className);
 	}
 
+	public void out(String s){
+		if (debug)
+			System.out.println("Eval:\n\n " + s);
+	}
 	
 	public Object evaluate(String script){
-		System.out.println("Eval:\n\n " + script);
+		this.out (script);
 		return this.groovy.evaluate(script);
 	}
 
@@ -220,7 +224,7 @@ public class XGroovy
 			result = groovy.evaluate(xeScript);
 		}
 		catch(Exception e){
-			System.out.println("Script Err:" + script);
+			this.out("Script Err:" + script);
 			XEIDTO dto = server.getDtoFactory().create(Xonst.SCRIPT_RESULT);
 			dto.add(Xonst.SCRIPT_result, server.getDtoFactory().createAttString(e.getMessage()));
 			e.printStackTrace();

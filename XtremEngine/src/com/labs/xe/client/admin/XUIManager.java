@@ -36,7 +36,7 @@ public class XUIManager implements ClickHandler{
 	public static String XUI_isNew = "XUI_isNew";
 	public static final String XUI_update_name  = "XUI_update_name";
 	public static final String XUI_update_value = "XUI_update_value";
-	
+	DialogBox top = null;	
 	long count = 1;
 	Map<String,XUIBase> components= new HashMap<String,XUIBase>();
 	XEIDTO globals = XEDTOFactory.newInstance().create(Xonst.XE_GLOBALS);
@@ -111,7 +111,7 @@ public class XUIManager implements ClickHandler{
 	
 	Map<Element,Widget> elementToWidgwet = new HashMap<Element,Widget>();
 	
-	DialogBox top = null;
+	
 @Override
 public void onClick(ClickEvent event) {
 	
@@ -137,12 +137,7 @@ public void onClick(ClickEvent event) {
 		
 	}
 	
-	XUIConsole.show("click on:" +  ":"+ ctarget + ":"   + target);
-	XUIConsole.show("element:" +  ":"+ e);
-	XUIConsole.show("Class:" +  ":"+ e.getClassName() );
-	XUIConsole.show("Style:" +  ":"+ e.getStyle());
-	XUIConsole.show("Style:" +  ":"+ e.getStyle().getListStyleType());
-	
+		
 }
 
 public XUIBase getComponents(String xuid) {

@@ -96,13 +96,17 @@ public class XUIDockPanel extends XUIBase  {
 	
 	
 	public XUIDockPanel() {
+		
+		north.getElement().getStyle().setProperty("float", "left");
 		east.getElement().getStyle().setProperty("float", "left");
 		center.getElement().getStyle().setProperty("float", "left");
 		west.getElement().getStyle().setProperty("float", "left");
+		south.getElement().getStyle().setProperty("float", "left");
 		
 		if (isSplit) splitPanel = new SplitLayoutPanel();
 		else {mainPanel = new VerticalPanel();
-			  mainPanel.setWidth("100%");
+			mainPanel.getElement().getStyle().setProperty("float", "left");
+			 // mainPanel.setWidth("100%");
 			  mainPanel.add(north);//,DockPanel.NORTH);
 			  //centerfpanel.add(new Button());
 			  //centerfpanel.add(new Button());

@@ -89,7 +89,6 @@ public class XUIDataTable {
 	    // Add the data to the data provider, which automatically pushes it to the
 	    // widget.
 	    //dataProvider.setList(dtos.getData());
-	  // System.out.println("XXXXXXXXXXXXXXXX");
 	  // int x=1;
 	    
 	    /*for (XEIDTO o:dtos.getRel(XEDTOConstants.QUERY_DATA)){
