@@ -206,7 +206,11 @@ public XUIBase getComponents(String xuid) {
 							XEIATT value = d.get(XUIManager.XUI_update_value);
 							if (name!=null){
 								String sname = (String) name.getValue();
-								o.update(sname,value);
+								try {
+									o.update(sname,value);
+								} catch (Exception e) {
+									XUIConsole.show(e);
+								}
 							}
 						}
 					}

@@ -2,6 +2,7 @@ package com.labs.xe.client.ui;
 
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.DockPanel.DockLayoutConstant;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -21,29 +22,31 @@ public class XUIDockPanel extends XUIBase  {
 
 	boolean isSplit=false;
 	
-	DockPanel dockPanel; 
+	VerticalPanel  mainPanel; 
 	SplitLayoutPanel splitPanel ;
-	ScrollPanel centerScroll = new ScrollPanel();
+	//ScrollPanel centerScroll = new ScrollPanel();
 	
 	
 	FlowPanel north = new FlowPanel();
 	FlowPanel south = new FlowPanel();
+	FlowPanel centerfpanel = new FlowPanel();
 	VerticalPanel   west   = new VerticalPanel();
 	VerticalPanel   east   = new VerticalPanel();
 	VerticalPanel   center = new VerticalPanel();
-	FlowPanel centerfpanel = new FlowPanel();
+	
 	
 	
 	public Widget getWidget(){
 		if (isSplit) return splitPanel;
-		else return dockPanel;
+		else return mainPanel;
 	} 
 	
 
 	
 	
 	public void add(Widget  w, DockLayoutConstant direction) {
-		if (dockPanel!=null) {
+		w.getElement().getStyle().setProperty("float", "left");
+		if (mainPanel!=null) {
 			if(DockPanel.NORTH == direction){
 				  north.add(w);	
 				}
@@ -71,7 +74,7 @@ public class XUIDockPanel extends XUIBase  {
 				  splitPanel.addWest(w, 100);	
 				}	
 			else if(DockPanel.SOUTH== direction){
-				  splitPanel.addWest(w, 50);	
+				  splitPanel.addSouth(w, 50);	
 				}	
 		}
 	}
@@ -79,48 +82,39 @@ public class XUIDockPanel extends XUIBase  {
 	    
 	    
 		public void add(Widget  w) {
-			if (dockPanel!=null) {
-				
+			
+			w.getElement().getStyle().setProperty("float", "left");
+			if (mainPanel!=null) {
 				center.add(w);
-				//centerVpanel.setSize("100%", "100%");
-				/*dockPanel.addHandler(new ResizeHandler() {
-					
-					@Override
-					public void onResize(ResizeEvent event) {
-						//XUIConsole.show("resize" + dockPanel.getOffsetHeight());
-						//if (dockPanel.getOffsetHeight()>500) scroller.setHeight("500px");
-						
-					}
-				}, ResizeEvent.getType());*/
-				
 			}
 			else { 
 				splitPanel.add(w);	
-				}	
+			}	
 			
 	}
 	
 	
 	
 	public XUIDockPanel() {
+		east.getElement().getStyle().setProperty("float", "left");
+		center.getElement().getStyle().setProperty("float", "left");
+		west.getElement().getStyle().setProperty("float", "left");
+		
 		if (isSplit) splitPanel = new SplitLayoutPanel();
-		else {dockPanel = new DockPanel();
-			  centerfpanel.setWidth("100%");
-			  dockPanel.add(north,DockPanel.NORTH);
-			  dockPanel.add(south,DockPanel.SOUTH);
-			  dockPanel.add(new HTML(""),DockPanel.WEST);
-			  dockPanel.add(new HTML(""),DockPanel.EAST);
-
+		else {mainPanel = new VerticalPanel();
+			  mainPanel.setWidth("100%");
+			  mainPanel.add(north);//,DockPanel.NORTH);
+			  //centerfpanel.add(new Button());
+			  //centerfpanel.add(new Button());
+			  //centerfpanel.add(new HTML("center"));
+			  //centerfpanel.add(new HTML("center"));
 			  
-			  centerScroll.setWidget(this.center);
-
 			  centerfpanel.add(east);
 			  centerfpanel.add(center);
 			  centerfpanel.add(west);
 
-			  
-			  dockPanel.add(centerfpanel,DockPanel.CENTER);
-
+			  mainPanel.add(centerfpanel);
+			  mainPanel.add(south);//,DockPanel.SOUTH);
 		      
 			}
 		
@@ -143,7 +137,7 @@ public class XUIDockPanel extends XUIBase  {
 			this.add(a.getWidget(), DockPanel.WEST);
 		}
 		else if ("styleName".equalsIgnoreCase(attname)){
-			this.dockPanel.setStyleName(svalue);
+			this.mainPanel.setStyleName(svalue);
 		}
 		else{
 		    this.add(a.getWidget());	 

@@ -1,12 +1,14 @@
-h = ui html
+ui html
 
 html begin 
-           <h1> Title 1 </h1>
+           <h1> This is an <b> HTML </b>  </h1>
 
            Hello  <b> WORLD!!!</b>
 
 end
 
+h = xur
+
 ui mainview
-center h
+center h 
 

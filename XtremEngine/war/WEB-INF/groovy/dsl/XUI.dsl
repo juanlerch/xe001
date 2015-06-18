@@ -4,7 +4,7 @@ ui =  { action  -> xur = action(); xur }
 update = {prop,value->xe.ui.update(xur,prop,value)}
 
 widget = { type -> 
-           dto type
+           data type
            xuid= xe.xid()
            att "xuid",xuid
            xe.ui.update(xuid,type,true);
@@ -25,10 +25,10 @@ panel = {  xur = widget "Panel";xur }
 window = {xur = widget "DialogBox";xur}        
 
 mainview = {
-          dto = get "xeMainView"
-          s = load dto.name
+          d = get "xeMainView"
+          s = load d.name
     	  eval s
-          xur = dto
+          xur = d
 } 
 
 setmainview = { a->	set "xeMainView", a} 

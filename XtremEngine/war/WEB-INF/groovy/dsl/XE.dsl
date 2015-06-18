@@ -22,7 +22,7 @@ get  = {x -> c= xe.get(x);
 
 set  = {x,y -> xe.set(x,y);}
 
-dto = { name-> xur = xe.createDTO(name); xur}
+data = { name-> xur = xe.createDTO(name); xur}
 
 att  = {name,value-> x = xe.createATT(xur,name,value);x}
 
