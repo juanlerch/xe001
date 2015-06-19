@@ -1,0 +1,46 @@
+spaces=" ____"
+for (t=1;t<=5;t++){
+	n1 =ui button
+	caption "north " + t;
+	onClick begin
+	  caption xur.caption.value + "!"
+	end  
+
+	w1 =ui button
+	caption  spaces + "west  " + t + spaces;
+    onClick begin
+	  caption xur.caption.value + "!"
+	end 
+	
+	c1 =ui button
+	caption  spaces + "center  " + t + spaces;
+	onClick begin
+	  caption xur.caption.value + "!"
+	end 
+
+	e1 =ui button
+	caption  spaces + "east  " + t + spaces;
+	onClick begin
+	  caption xur.caption.value + "!"
+	end 
+
+	s1 =ui button
+	caption "south " + t;
+	onClick begin
+	  caption xur.caption.value + "!"
+	end 
+
+	p1= ui panel
+	north n1
+	west w1
+	center c1
+	east e1
+	south s1
+	ui mainview
+	if (t==1) north  p1
+	if (t==2) west   p1
+	if (t==3) center p1
+	if (t==4) east   p1
+	if (t==5) south  p1
+	
+}

@@ -1,0 +1,55 @@
+
+
+b= ui button
+caption "north 01"
+ui mainview
+north b
+
+b= ui button
+caption "north 02"
+ui mainview
+north b
+
+b= ui button
+caption "south 01"
+ui mainview
+south b
+
+b= ui button
+caption "south 02"
+ui mainview
+south b
+
+b= ui button
+caption "east 01"
+ui mainview
+east b
+
+b= ui button
+caption "east 02"
+ui mainview
+east b
+
+b= ui button
+caption "west 01"
+ui mainview
+west b
+
+b= ui button
+caption "west 02"
+ui mainview
+west b
+
+b= ui button
+caption "center  01"
+ui mainview
+center b
+
+b= ui button
+caption "center  02"
+ui mainview
+center b
+
+
+
+
