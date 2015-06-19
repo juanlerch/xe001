@@ -32,8 +32,9 @@ import com.labs.xe.shared.Xonst;
 
 public class XGroovy 
 {
-	public static java.util.Map<String,Object> sessionBack = new HashMap<String,Object>();
-	public boolean debug=false;
+	public static java.util.Map<String,Object> cache = new HashMap<String,Object>();
+	
+	public static boolean debug=false;
 	 XtremEngineServer server;
 	 XUI                 ui; 
 	 GroovyShell         groovy;
