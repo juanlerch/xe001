@@ -1,9 +1,9 @@
 package com.labs.xe.server;
 
 import com.google.appengine.api.datastore.Entity;
-import com.labs.xe.server.xdb.XDB;
-import com.labs.xe.server.xdb.XDBEntity;
-import com.labs.xe.server.xdb.XDBTemplate;
+import com.labs.xe.server.xdb.gae.XDBGae;
+import com.labs.xe.server.xdb.gae.XDBEntity;
+import com.labs.xe.server.xdb.gae.XDBTemplate;
 
 public class XDataSamplePeople {
 
@@ -19,7 +19,7 @@ public class XDataSamplePeople {
 		template.addAtribute("Street");
 		template.addAtribute("Phone");
 		
-		XDB xdb = new XDB();
+		XDBGae xdb = new XDBGae();
 		
 		xdb.addTemplate(template);
 		

@@ -26,6 +26,10 @@ public interface XEIDTO extends IsSerializable,Serializable{
 	public XEDTO add(String name, XEIATT attribute);
 	public XEDTO addRel(String name, XEIDTO dto);
 
-	
+	public String getValueAsString(String name);
+	public String getValueAsLong(String name);
+	public String getValueAsDouble(String name);
+	public String getValueAsDate(String name);
 
+	
 }

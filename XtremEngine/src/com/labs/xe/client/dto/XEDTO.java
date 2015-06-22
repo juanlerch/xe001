@@ -75,4 +75,35 @@ public class XEDTO implements XEIDTO {
 	public void setName(String name) {
 		this.name=name;
 	}
+
+	@Override
+	public String getValueAsString(String name) {
+		XEIATT att = this.get(name);
+		Object o = att.getValue();
+		String s = (String) o;
+		return null;
+	}
+
+
+	@Override
+	public String getValueAsLong(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getValueAsDouble(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getValueAsDate(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
 }

@@ -18,8 +18,8 @@ import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.client.ui.XUIBase;
 import com.labs.xe.client.ui.XUIButton;
-import com.labs.xe.server.xdb.XDB;
-import com.labs.xe.server.xdb.XDBQuery;
+import com.labs.xe.server.xdb.gae.XDBGae;
+import com.labs.xe.server.xdb.gae.XDBQuery;
 import com.labs.xe.shared.FieldVerifier;
 import com.labs.xe.shared.Xonst;
 
@@ -59,11 +59,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			XUtil util=new XUtil();
 			util.install();		
 			System.out.println("Instalacion completa");
-			XDB.log(this.getClass().getName() + ".install", "OK");
+			XDBGae.log(this.getClass().getName() + ".install", "OK");
 			return "Instalacion completa";
 		}
 		catch (Exception e) {
-			XDB.log(this.getClass().getName() + ".install", e);
+			XDBGae.log(this.getClass().getName() + ".install", e);
 	        return "Error al instalar" ;
 		}
 	}
@@ -87,7 +87,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public List<String> getTemplates() {
 		try {
-			XDB xdb = new XDB();
+			XDBGae xdb = new XDBGae();
 			return xdb.getTemplates(null);
 		}
 		catch (Exception e) {
@@ -101,7 +101,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public XEIDTO query(String template)  {
 		try {
-			XDB xdb = XDB.getInstance();
+			XDBGae xdb = XDBGae.getInstance();
 			XDBQuery query = new XDBQuery();
 			query.setTemplate(template);
 			XEIDTO dtos =  xdb.query(query);
@@ -125,7 +125,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			if (a!=null) {
 				 g = (XEIDTO) a.getValue();
 			}
-			XDB xdb =  this.getXEServer(g).getXdb();
+			XDBGae xdb =  this.getXEServer(g).getXdb();
 			xdb.save(dto);
 		
 		}
@@ -140,7 +140,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public XEIDTO createInstance(String type) {
 		XEIDTO g = null;
 		//todo:reemplar por generic request
-		XDB xdb =  this.getXEServer(g).getXdb();
+		XDBGae xdb =  this.getXEServer(g).getXdb();
 		XEIDTO dto = xdb.createInstance(type);
 
 		return dto;

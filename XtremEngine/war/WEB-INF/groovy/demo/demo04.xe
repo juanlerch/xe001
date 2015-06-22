@@ -1,1 +1,46 @@
-demo 4
+//Persistence data: Beatle Family
+
+john = data type:"Person"
+set firstName:"John"
+set lastName:"Lennon"
+
+
+yoko  = data type:"Person",
+		firsName:,"Yoko",
+        lastName: "Ono"
+rel conyuge:john,reciproco:true
+
+jean = data type:"Person"
+set firstName:"Jean"
+set lastName:john.lastName
+
+julian = data type:"Person"
+set firstName:"Julian"
+set lastName:john.lastName
+
+
+go john
+rel sun:[jean,julian]
+
+go jean
+rel brother:julian,reciproco:true
+
+
+beatles = data type:"Band"
+set name:"Beatles"
+
+paul = data type:"Person"
+set name:"Paul"
+set play:"Guitar"
+
+ringo = data type:"Person"
+set name:"Ringo"
+set play:"Drumps" //bateria
+
+george  = data type:"Person"
+set name:""
+set play:"Drumps" //bateria
+
+
+
+
