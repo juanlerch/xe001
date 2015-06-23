@@ -22,11 +22,22 @@ get  = {x -> c= xe.get(x);
 
 set  = {x,y -> xe.set(x,y);}
 
+
 data = { name-> xur = xe.createDTO(name); xur}
 
 att  = {name,value-> x = xe.createATT(xur,name,value);x}
 
 rel = {name,value-> x = xe.createREL(xur,name,value);x}
+
+
+put  = {map-> map.each{
+			    key, value -> att key,value;
+              }
+       }
+add  = {map-> map.each{
+			    key, value -> rel key,value;
+              }
+       }
 
 
 demo = {run "/demo/demo.xe"}
@@ -36,7 +47,9 @@ demo = {run "/demo/demo.xe"}
 
 
 s = load "XUI"
+eval s
 
+s = load "XDB"
 eval s
 
 xresponse = eval xe_cur_script

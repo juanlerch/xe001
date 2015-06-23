@@ -194,7 +194,8 @@ public class XUIDataTable {
 			dialog.show();
 		}
 		
-		XUIManager.getService().createInstance(type, new AsyncCallback<XEIDTO>() {
+		//todo:call to 
+	/*	XUIManager.getService().createInstance(type, new AsyncCallback<XEIDTO>() {
 				@Override
 				public void onSuccess(XEIDTO result) {
 					defaulDataForm.show(result);
@@ -204,6 +205,7 @@ public class XUIDataTable {
 					XUIConsole.show(caught);
 				}
 			});
+			*/
 		}
 	
 

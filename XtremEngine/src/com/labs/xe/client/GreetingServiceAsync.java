@@ -9,7 +9,7 @@ import com.labs.xe.client.dto.XEIDTO;
  * The async counterpart of <code>GreetingService</code>.
  */
 public interface GreetingServiceAsync {
-	void greetServer(String input, AsyncCallback<String> callback)
+	/*void greetServer(String input, AsyncCallback<String> callback)
 			throws IllegalArgumentException;
 
 	void getTemplates(AsyncCallback<List<String>> callback);
@@ -20,7 +20,7 @@ public interface GreetingServiceAsync {
 
 	void createInstance(String type, AsyncCallback<XEIDTO> callback);
 
-	
+	*/
 
 	void request(XEIDTO request, AsyncCallback<XEIDTO> callback);
 

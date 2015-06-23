@@ -1,6 +1,7 @@
 package com.labs.xe.client.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,9 +28,10 @@ public interface XEIDTO extends IsSerializable,Serializable{
 	public XEDTO addRel(String name, XEIDTO dto);
 
 	public String getValueAsString(String name);
-	public String getValueAsLong(String name);
-	public String getValueAsDouble(String name);
-	public String getValueAsDate(String name);
+	public Long getValueAsLong(String name);
+	public Double getValueAsDouble(String name);
+	public Date getValueAsDate(String name);
+	public Object  getValueAsObject(String name);
 
 	
 }

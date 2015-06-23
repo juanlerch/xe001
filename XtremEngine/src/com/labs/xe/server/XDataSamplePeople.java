@@ -9,7 +9,7 @@ public class XDataSamplePeople {
 
 	
 	public void configure() {
-	
+	    /*
 		XDBTemplate template = new XDBTemplate("People");
 		
 		template.setData1("FirstName");
@@ -33,7 +33,7 @@ public class XDataSamplePeople {
 			entity.setAttribute("Phone","15466085");
 			xdb.put(entity);
 		}
-		
+		*/
 	}
 	
 	

@@ -37,6 +37,11 @@ public class XDBGae implements Serializable {
 	public static String RELATION = "XRelation";
 	public static String LOG = "XLog";
 	
+	private  XDBGae() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 	private String asString(Entity e,String propName){
 		Object o= e.getProperty(propName);

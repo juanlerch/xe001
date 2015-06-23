@@ -5,13 +5,15 @@ import java.util.Map;
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.server.dsl.ui.XUI;
+import com.labs.xe.server.xdb.XDB;
+import com.labs.xe.server.xdb.gae.XDBGAE2;
 import com.labs.xe.server.xdb.gae.XDBGae;
 
 public class XtremEngineServer {
 	
 	//ServletContext serverContext;
 	XGroovy xgroovy;
-	XDBGae     xdb = new XDBGae(); 
+	XDB     xdb = new XDBGAE2(); 
 	XUtil   util = new XUtil();
 	XEDTOFactory dtoFactory = new XEDTOFactory();
 	//private Map<String,Base> dsl= new HashMap<String,Base>();
@@ -30,7 +32,7 @@ public class XtremEngineServer {
 	}
 	
 	
-	public XDBGae getXdb(){
+	public XDB getXdb(){
 		return xdb;
 		
 	}
@@ -53,7 +55,7 @@ public class XtremEngineServer {
 	}
 
 
-	public void setXdb(XDBGae xdb) {
+	public void setXdb(XDB xdb) {
 		this.xdb = xdb;
 	}
 

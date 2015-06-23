@@ -1,6 +1,7 @@
 package com.labs.xe.client.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,26 +80,36 @@ public class XEDTO implements XEIDTO {
 	@Override
 	public String getValueAsString(String name) {
 		XEIATT att = this.get(name);
+		if (att==null) return null;
 		Object o = att.getValue();
 		String s = (String) o;
-		return null;
+		return s;
 	}
+	
+	@Override
+	public Object getValueAsObject(String name) {
+		XEIATT att = this.get(name);
+		if (att==null) return null;
+		Object o = att.getValue();
+
+		return o;	
+		}
 
 
 	@Override
-	public String getValueAsLong(String name) {
+	public Long  getValueAsLong(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getValueAsDouble(String name) {
+	public Double  getValueAsDouble(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getValueAsDate(String name) {
+	public Date getValueAsDate(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

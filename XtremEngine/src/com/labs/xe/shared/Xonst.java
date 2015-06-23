@@ -1,10 +1,24 @@
 package com.labs.xe.shared;
 
+import com.google.appengine.api.datastore.Entity;
+
 public class Xonst {
+	public static String DB_TEMPLATE = "XTemplate";
+	public static String DB_ENTITY =   "XEntity";
+	public static String DB_PROPERTY = "XProperty";
+	public static String DB_RELATION = "XRelation";
 	
+	public static final String DB_PROPERTY_ENTITY = "entityKey";
+	public static final String DB_PROPERTY_NAME = "name";
+	public static final String DB_PROPERTY_VALUE = "value";
+	
+	public static final String DB_RELATION_NAME =   "parentKey";
+	public static final String DB_RELATION_ENTITY = "name";
+	public static final String DB_RELATION_CHILD = "childkey";
 	
 	                                             
 	public static final String ServletContext = "servletContext";
+
 	
 	public static String XE_xtremEngineServer = "xe";
 	//public static String XE_UI = "xe_ui";
@@ -45,6 +59,7 @@ public class Xonst {
 	public static String INIT_SCRIPT_PATH = "/xe/init.xe";
 
 	public static String xuid="xuid";
+	public static String xdbid="xdbid";
 	
 	
 	

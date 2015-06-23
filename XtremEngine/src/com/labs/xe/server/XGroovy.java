@@ -28,6 +28,7 @@ import com.labs.xe.client.dto.XEIDTOFactory;
 import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XDSLUtil;
 import com.labs.xe.server.dsl.ui.XUI;
+import com.labs.xe.server.xdb.XDB;
 import com.labs.xe.shared.Xonst;
 
 public class XGroovy 
@@ -36,13 +37,14 @@ public class XGroovy
 	
 	public static boolean debug=false;
 	 XtremEngineServer server;
-	 XUI                 ui; 
+	 XUI                 ui;
+	 XDB				 db;
 	 GroovyShell         groovy;
 	 XEIDTO  globals;
 	 XEIDTO  globalsChanges;
 	 ServletContext      context;
 	 XDSLUtil            util;
-		XEIDTOFactory dtoFactory = new XEDTOFactory();		
+	 XEIDTOFactory dtoFactory = new XEDTOFactory();		
 
 
 	public XGroovy(XtremEngineServer server,XUI ui) {
@@ -50,7 +52,7 @@ public class XGroovy
 		this.ui=ui;
 		this.globals = server.getGlobals();
 		this.globalsChanges = dtoFactory.create(Xonst.XE_GLOBALS_CHANGES);
-
+		this.db=server.getXdb();
 	}
 	
 	

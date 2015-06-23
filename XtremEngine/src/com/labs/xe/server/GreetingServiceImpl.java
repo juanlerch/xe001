@@ -1,26 +1,9 @@
 package com.labs.xe.server;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.collections.map.HashedMap;
-
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.labs.xe.client.GreetingService;
 import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
-import com.labs.xe.client.ui.XUIBase;
-import com.labs.xe.client.ui.XUIButton;
-import com.labs.xe.server.xdb.gae.XDBGae;
-import com.labs.xe.server.xdb.gae.XDBQuery;
-import com.labs.xe.shared.FieldVerifier;
 import com.labs.xe.shared.Xonst;
 
 /**
@@ -30,6 +13,7 @@ import com.labs.xe.shared.Xonst;
 public class GreetingServiceImpl extends RemoteServiceServlet implements
 		GreetingService {
 
+	/*
 	public String greetServer(String input) throws IllegalArgumentException {
 		// Verify that the input is valid. 
 		if (!FieldVerifier.isValidName(input)) {
@@ -50,9 +34,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo + " install:  " + result
 				+ ".<br><br>It looks like you are using:<br>" + userAgent;
-	}
+	}*/
 
-	
+	/*
 	private String  install() { 
 		try {
 			System.out.println("Instalando el sistema");
@@ -66,7 +50,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 			XDBGae.log(this.getClass().getName() + ".install", e);
 	        return "Error al instalar" ;
 		}
-	}
+	}*/
 
 	
 	/**
@@ -84,7 +68,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				.replaceAll(">", "&gt;");
 	}
 
-	@Override
+	/*@Override
 	public List<String> getTemplates() {
 		try {
 			XDBGae xdb = new XDBGae();
@@ -96,8 +80,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	        log.log(Level.SEVERE, "getTemplatesError" + e.getMessage(), e);
 	        return null;
 		}
-	} 
+	} */
 
+	/*
 	@Override
 	public XEIDTO query(String template)  {
 		try {
@@ -114,9 +99,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	        return null;
 			}
 		
-	}
+	}*/
 	
-	@Override
+/*	@Override
 	public void save(XEIDTO dto) {
 		try {
 			XEIDTO g = null;
@@ -134,9 +119,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	        log.log(Level.SEVERE, "save" + e.getMessage(), e);
 	        e.printStackTrace();
 	    	}
-	}
+	}*/
 	
-	@Override
+/*	@Override
 	public XEIDTO createInstance(String type) {
 		XEIDTO g = null;
 		//todo:reemplar por generic request
@@ -144,30 +129,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		XEIDTO dto = xdb.createInstance(type);
 
 		return dto;
-	}
+	}*/
 	
 	
-	public XtremEngineServer getXEServer(XEIDTO globals){
-        /*
-		final String name="xtremEngineServer";
-		
-		HttpServletRequest r = this.getThreadLocalRequest();
-			
-		HttpSession session = r.getSession();
-
-		XtremEngineServer xeserver  = (XtremEngineServer ) session.getAttribute(name);
-		
-		if (xeserver ==null) { 
-			xeserver = new XtremEngineServer();
-			session.setAttribute(name, xeserver);
-			
-		}
-		xeserver.setSession(session);
-		return xeserver  ;
-		*/
-		
-		
-	
+	private XtremEngineServer getXEServer(XEIDTO globals){
 		XtremEngineServer xeserver =  new XtremEngineServer(globals);
 		
 		return xeserver;

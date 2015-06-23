@@ -35,7 +35,7 @@ public class TemplateBox {
 	}
 	
 	public void show(){
-		 
+		 /*
 		service.getTemplates(new AsyncCallback<List<String>>() {
 			 
 			@Override
@@ -105,7 +105,7 @@ public class TemplateBox {
 		});
 		
 		
-		
+		*/
 		
 	}
 	

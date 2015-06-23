@@ -12,7 +12,7 @@ import com.labs.xe.client.dto.XEIDTO;
 @RemoteServiceRelativePath("greet")
 public interface GreetingService extends RemoteService {
 
-	String greetServer(String name) throws IllegalArgumentException;
+	/*String greetServer(String name) throws IllegalArgumentException;
 	
 	List<String> getTemplates();
 	
@@ -20,7 +20,7 @@ public interface GreetingService extends RemoteService {
 	
 	XEIDTO createInstance(String type);
 	
-	public void save(XEIDTO dto);
+	public void save(XEIDTO dto);*/
 	
 	public XEIDTO request(XEIDTO request);
 	

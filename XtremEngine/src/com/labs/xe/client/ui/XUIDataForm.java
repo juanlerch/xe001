@@ -68,8 +68,8 @@ public class XUIDataForm extends DecoratorPanel implements ClickHandler{
 			r++;
 		}
 		
-		save.setText("Saving...");
-		XUIManager.getService().save(dto, new AsyncCallback<Void>() {
+		//todo:save.setText("Saving...");
+		/*XUIManager.getService().save(dto, new AsyncCallback<Void>() {
 			
 			@Override
 			public void onSuccess(Void result) {
@@ -82,7 +82,7 @@ public class XUIDataForm extends DecoratorPanel implements ClickHandler{
 				save.setText("Not Saved");
 				XUIConsole.show(caught.getMessage());
 			}
-		});
+		});*/
 		
 	}
 	
