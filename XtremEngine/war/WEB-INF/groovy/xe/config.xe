@@ -1,0 +1,5 @@
+config = {params ->  xe.config(params)}
+
+config xe:"dsl/XE.dsl",
+       ui:"dsl/XUI.dsl",
+       db:"dsl/XDB.dsl"
