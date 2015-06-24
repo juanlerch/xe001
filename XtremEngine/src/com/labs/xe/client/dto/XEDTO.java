@@ -114,7 +114,11 @@ public class XEDTO implements XEIDTO {
 		return null;
 	}
 	
-	
+	@Override
+	public String toString() {
+		String reponse = "type:" + name + " att: " + this.attributes +  " rel: " + this.relations;   
+		return super.toString();
+	}
 	
 	
 }
