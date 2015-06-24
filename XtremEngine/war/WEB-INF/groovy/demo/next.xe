@@ -18,6 +18,11 @@ else if (s == "demo/demo02.xe") {
 	att "xe_demo_run" ,"demo/demo03.xe"
 	att "xe_demo_next","demo/demo04.xe"
 }
+else if (s == "demo/demo03.xe") {
+	att "xe_demo_prev","demo/demo03.xe" 
+	att "xe_demo_run" ,"demo/demo04.xe"
+	att "xe_demo_next","demo/demo05.xe"
+}
 
 xur["xe_demo_run"]
 

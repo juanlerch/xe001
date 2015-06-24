@@ -25,18 +25,14 @@ set  = {x,y -> xe.set(x,y);}
 
 data = { name-> xur = xe.createDTO(name); xur}
 
-att  = {name,value-> x = xe.createATT(xur,name,value);x}
-
-rel = {name,value-> x = xe.createREL(xur,name,value);x}
-
-
-put  = {map-> map.each{
-			    key, value -> att key,value;
-              }
+att  = {map-> map.each{
+		      key, value -> x = xe.createATT(xur,key,value);x;
+             }
        }
-add  = {map-> map.each{
-			    key, value -> rel key,value;
-              }
+
+rel  = {map-> map.each{
+		      key, value -> x = xe.createREL(xur,key,value);x;
+             }
        }
 
 

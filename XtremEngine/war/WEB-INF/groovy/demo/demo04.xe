@@ -1,22 +1,22 @@
 //Persistence data: Beatle Family
 
 john = data type:"Person"
-set firstName:"John"
-set lastName:"Lennon"
+att firstName:"John"
+att lastName:"Lennon"
 
 
 yoko  = data type:"Person",
 		firsName:,"Yoko",
         lastName: "Ono"
-rel conyuge:john,reciproco:true
+rel   conyuge:john,inverse:true
 
 jean = data type:"Person"
-set firstName:"Jean"
-set lastName:john.lastName
+att firstName:"Jean"
+att lastName:john.lastName
 
 julian = data type:"Person"
-set firstName:"Julian"
-set lastName:john.lastName
+att firstName:"Julian"
+att lastName:john.lastName
 
 
 go john
@@ -27,19 +27,19 @@ rel brother:julian,reciproco:true
 
 
 beatles = data type:"Band"
-set name:"Beatles"
+att name:"Beatles"
 
 paul = data type:"Person"
-set name:"Paul"
-set play:"Guitar"
+att name:"Paul"
+att play:"Guitar"
 
 ringo = data type:"Person"
-set name:"Ringo"
-set play:"Drumps" //bateria
+att name:"Ringo"
+att play:"Drumps" //bateria
 
 george  = data type:"Person"
-set name:""
-set play:"Drumps" //bateria
+att name:""
+att play:"Drumps" //bateria
 
 
 
