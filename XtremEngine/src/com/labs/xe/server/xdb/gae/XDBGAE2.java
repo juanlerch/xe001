@@ -145,7 +145,7 @@ public class XDBGAE2 implements XDB {
 		
 		Entity prop = new Entity(Xonst.DB_RELATION);
 		prop.setProperty(Xonst.DB_RELATION_ENTITY,entityKey);
-		prop.setProperty(Xonst.DB_PROPERTY_NAME,name);
+		prop.setProperty(Xonst.DB_RELATION_NAME,name);
 		prop.setProperty(Xonst.DB_RELATION_CHILD ,child);
 		datastorePutAndWait(prop);
 		return prop;

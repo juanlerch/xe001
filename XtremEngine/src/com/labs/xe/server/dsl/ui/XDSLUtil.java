@@ -64,6 +64,7 @@ public class XDSLUtil {
 			String file  = className + ".dsl" ;  
 		    BufferedReader reader;
 		    InputStream i =  context.getResourceAsStream(Xonst.path_groovy_dsl + className + ".dsl");
+		    if (i==null) return null;
 			try { 
 				reader = new BufferedReader( new InputStreamReader(i));
 		    String         line = null;

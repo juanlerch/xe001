@@ -12,7 +12,7 @@ run =  {a -> s = xe.util.loadSavedScript(a);
 
 go  =  {x -> xur = x
              s = load xur.name
-             eval s
+             if (s!=null) eval s
              xur
              }
              

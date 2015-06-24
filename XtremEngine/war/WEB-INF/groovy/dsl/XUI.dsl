@@ -6,7 +6,7 @@ update = {prop,value->xe.ui.update(xur,prop,value)}
 widget = { type -> 
            data type
            xuid= xe.xid()
-           att "xuid",xuid
+           att xuid:xuid
            xe.ui.update(xuid,type,true);
            s= load type
            xe.evaluate(s)

@@ -12,9 +12,9 @@ public class Xonst {
 	public static final String DB_PROPERTY_NAME = "name";
 	public static final String DB_PROPERTY_VALUE = "value";
 	
-	public static final String DB_RELATION_NAME =   "parentKey";
-	public static final String DB_RELATION_ENTITY = "name";
-	public static final String DB_RELATION_CHILD = "childkey";
+	public static final String DB_RELATION_NAME =   "name"; 
+	public static final String DB_RELATION_ENTITY = "parentKey";
+	public static final String DB_RELATION_CHILD =  "childkey";
 	
 	                                             
 	public static final String ServletContext = "servletContext";

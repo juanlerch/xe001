@@ -179,14 +179,17 @@ public class XGroovy
 	}
 	
 	public Object evaluate(String script){
-		this.out (script);
+		if (script != null)  {this.out (script);
 		return this.groovy.evaluate(script);
+		}
+		return null;
 	}
 
 	public String preProcessScript(String script){
-		
-		script=script.replace("begin", "'''");
-		script=script.replace("end", "'''");
+		if (script != null ){
+			script=script.replace("begin", "'''");
+			script=script.replace("end", "'''");
+		}
 		return script; 
 		
 	}

@@ -6,9 +6,9 @@ att lastName:"Lennon"
 
 
 yoko  = data type:"Person",
-		firsName:,"Yoko",
-        lastName: "Ono"
-rel   conyuge:john,inverse:true
+att		firsName:"Yoko",
+att       lastName: "Ono"
+rel   conyuge:john
 
 jean = data type:"Person"
 att firstName:"Jean"
