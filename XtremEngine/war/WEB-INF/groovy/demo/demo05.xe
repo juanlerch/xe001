@@ -1,0 +1,28 @@
+//Persistence: The Beatle 
+
+john = data type:"Person" id:"johnLennon"
+
+att firstName:"John"
+att lastName:"Lennon"
+
+paul = data type:"Person"
+att name:"Paul"
+att play:"Guitar"
+
+ringo = data type:"Person"
+att name:"Ringo"
+att play:"Drumps" //bateria
+
+george  = data type:"Person"
+att name:""
+att play:"Drumps" //bateria
+
+
+beatles = data type:"Band"
+att name:"The Beatles"
+rel members:john 
+rel members:paul 
+rel members:ringo
+rel members:george
+
+save beatles

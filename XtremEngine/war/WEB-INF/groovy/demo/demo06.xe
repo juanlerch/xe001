@@ -1,0 +1,20 @@
+//Query The Beatles Bands
+
+query type:"Band" att:"name" rel:"members"
+        
+filter name:equals value:"The Beatles"
+
+result = executeQuery
+
+myTable = ui datatable 
+att data:result
+
+
+onclick begin
+   band =    request.selectRow
+   members = band.relations.member
+   
+   go
+   att data:members
+
+end
