@@ -9,13 +9,25 @@ import java.util.Set;
 
 
 public class XEDTO implements XEIDTO {
-
-	 private Map<String,XEIATT> attributes = null;
+    
+	private List<XEIDTOListener> listeners;   
+	
+  	private Map<String,XEIATT> attributes = null;
 
 	 private Map<String, List<XEIDTO>> relations = null;
 
 	 private String name = "NO SET";
 
+	 
+	 
+	 @Override
+	public void addListener(XEIDTOListener listener) {
+		if (this.listeners==null) listeners = new ArrayList<XEIDTOListener>();
+		this.listeners.add(listener);
+		
+	}
+	 
+	 
 	 public XEDTO() {
 		// if (name==null) throw new RuntimeException("name can't be null");
 	}
@@ -40,7 +52,14 @@ public class XEDTO implements XEIDTO {
 	    }
 
 	 public XEDTO add(String name, XEIATT attribute) {
-	        this.attributes.put(name, attribute);
+		    this.attributes.put(name, attribute);
+		    //notificar  a los listener
+		    if (this.listeners!= null && this.listeners.size()>0) {
+		 		for (XEIDTOListener l:this.listeners){
+		 			l.onChangeAtt(name, attribute);
+		 		}
+		 	}
+		
 	        return this;
 	    }
 	 
@@ -52,6 +71,14 @@ public class XEDTO implements XEIDTO {
 	    }
 	    
 	    this.relations.get(name).add(dto);
+	    
+	    //notificar  a los listener
+	    if (this.listeners!= null && this.listeners.size()>0) {
+	 		for (XEIDTOListener l:this.listeners){
+	 			l.onChangeRel(name, dto);
+	 		}
+	 	}
+	    
 		return this;
 	}
 	
@@ -124,15 +151,17 @@ public class XEDTO implements XEIDTO {
 		String response = "{type:" + name + " attributes: { " ;
 		if (deep>0){
 			for (String key: this.attributes.keySet()){
-				response += response +" " +  key + ":" + this.attributes.get(key).toString(deep-1) + ",";
-			}
+				response += " " +  key + ":" + this.attributes.get(key).toString(deep-1) + ",";
+			} 
+			response +="} relations { ";
 			for (String key: this.relations.keySet()){
-				response += response +  " relations {" + key + ":" ;
+				response +=   "{" + key + ":" ;
 				for (XEIDTO dto:this.relations.get(key)){
 					response +=	dto.toString(deep-1) +  "," ;
 				}
 				response += "}";
 			}
+			response +="}" ;
 		}
 		else{
 			response += "...";
@@ -140,5 +169,7 @@ public class XEDTO implements XEIDTO {
 		
 		return response + "}";
 	}
+	
+	
 
 }

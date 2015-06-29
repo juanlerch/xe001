@@ -7,7 +7,7 @@ filter name:equals value:"The Beatles"
 result = executeQuery
 
 myTable = ui datatable 
-att data:result
+set  data:result
 
 
 onclick begin
@@ -15,6 +15,6 @@ onclick begin
    members = band.relations.member
    
    go
-   att data:members
+   set  data:members
 
 end

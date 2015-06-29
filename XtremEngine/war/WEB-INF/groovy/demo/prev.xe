@@ -6,30 +6,35 @@ d.getEntryKey()
 s = d.get("xe_demo_run")
 s= s.value
 
-xur = d
+cursor = d
 
 if (s == "demo/demo01.xe") {
-	att xe_demo_prev:"" 
-	att xe_demo_run:"demo/demo01.xe"
-	att xe_demo_next:"demo/demo02.xe"
+	set xe_demo_prev:"" 
+	set xe_demo_run:"demo/demo01.xe"
+	set xe_demo_next:"demo/demo02.xe"
 }
 else if (s == "demo/demo02.xe") {
-	att xe_demo_prev:"" 
-	att xe_demo_run:"demo/demo01.xe"
-	att xe_demo_next:"demo/demo02.xe"
+	set xe_demo_prev:"" 
+	set xe_demo_run:"demo/demo01.xe"
+	set xe_demo_next:"demo/demo02.xe"
 }
 else if (s == "demo/demo03.xe") {
-	att xe_demo_prev:"demo/demo01.xe" 
-	att xe_demo_run:"demo/demo02.xe"
-	att xe_demo_next:"demo/demo03.xe"
+	set xe_demo_prev:"demo/demo01.xe" 
+	set xe_demo_run:"demo/demo02.xe"
+	set xe_demo_next:"demo/demo03.xe"
 }
 else if (s == "demo/demo04.xe") {
-	att xe_demo_prev:"demo/demo02.xe" 
-	att xe_demo_run:"demo/demo03.xe"
-	att xe_demo_next:"demo/demo04.xe"
+	set xe_demo_prev:"demo/demo02.xe" 
+	set xe_demo_run:"demo/demo03.xe"
+	set xe_demo_next:"demo/demo04.xe"
+} 
+else if (s == "demo/demo05.xe") {
+	set xe_demo_prev:"demo/demo03.xe" 
+	set xe_demo_run:"demo/demo04.xe"
+	set xe_demo_next:"demo/demo05.xe"
 } 
 
-xur["xe_demo_run"]
+cursor["xe_demo_run"]
 
 
 
@@ -44,4 +49,5 @@ go t
 
 text t2
 
+go globals 
 set "Demo",d

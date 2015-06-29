@@ -2,7 +2,7 @@ h = "north"
 b = ui button
 caption h
 onClick  begin
-     caption  xur.caption + "!" 
+     caption  cursor.caption + "!" 
 end
 
 update  xe_ui.view,h,b
@@ -11,7 +11,7 @@ h = "east"
 b = ui button
 caption h
 onClick  begin
-     caption  xur.caption + "!" 
+     caption  cursor.caption + "!" 
 end
 
 update  xe_ui.view,h,b
@@ -20,7 +20,7 @@ h = "center"
 b = ui button
 caption h
 onClick  begin
-     caption  xur.caption + "!" 
+     caption  cursor.caption + "!" 
 end
 
 update  xe_ui.view,h,b
@@ -29,7 +29,7 @@ h = "west"
 b = ui button
 caption h
 onClick  begin
-     caption  xur.caption + "!" 
+     caption  cursor.caption + "!" 
 end
 
 update  xe_ui.view,h,b
@@ -38,7 +38,7 @@ h = "south"
 b = ui button
 caption h
 onClick  begin
-     caption  xur.caption + "!" 
+     caption  cursor.caption + "!" 
 end
 
 update  xe_ui.view,h,b

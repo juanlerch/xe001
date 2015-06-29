@@ -1,6 +1,8 @@
 package com.labs.xe.server;
 
 import groovy.lang.Binding;
+import java.util.Stack;
+
 import groovy.lang.GroovyShell;
 
 import java.io.Serializable;
@@ -25,6 +27,7 @@ import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.client.dto.XEIDTOFactory;
+import com.labs.xe.client.dto.XEIDTOListener;
 import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XDSLUtil;
 import com.labs.xe.server.dsl.ui.XUI;
@@ -45,6 +48,10 @@ public class XGroovy
 	 ServletContext      context;
 	 XDSLUtil            util;
 	 XEIDTOFactory dtoFactory = new XEDTOFactory();		
+	 
+
+	 Object cursor = null;
+	 Object back   = new Stack(); 
 
 
 	public XGroovy(XtremEngineServer server,XUI ui) {
@@ -98,16 +105,14 @@ public class XGroovy
 						
 				String name =  d2.getValue().get(Xonst.SCRIPT_name).toString();
 				XEIDTO base = (XEIDTO) this.globals.get(id).getValue();
-				binding.setProperty("xur", base);
+				binding.setProperty("cursor", base);
 				String component = base.getName();
-				/*String script  =  "s="+Xonst.utl+".load('"+component+"','" + id + "')\n"; 
-				script  +=  "groovy.evaluate(s)\n"; 
-				script  +=  "xur= get '"+id + "'\n";
-				script += "groovy.evaluate(xur."+name+")\n";*/
+
+
 				XDSLUtil xutil = new XDSLUtil(context);
 				String script  = xutil.load(component);
-				script  +=  "xur= get '"+id + "'\n"; 
-				script += "eval(xur."+name+".value)\n";
+				script  +=  "cursor= get '"+id + "'\n"; 
+				script += "eval(cursor."+name+".value)\n";
 				return runScript(context,binding,script);
 			}
 		}
@@ -179,8 +184,20 @@ public class XGroovy
 	}
 	
 	public Object evaluate(String script){
-		if (script != null)  {this.out (script);
-		return this.groovy.evaluate(script);
+		if (script != null)  {
+			
+			try{
+				 Object result = this.groovy.evaluate(script);
+				 return result;
+			}
+			catch (RuntimeException e) {
+				this.out ("------ERROR SCRIPT -------");
+				this.out ("------ERROR " + e.getMessage());
+				this.out (script);
+				this.out ("------END SCRIPT -------");
+				e.printStackTrace();
+			}
+		    
 		}
 		return null;
 	}
@@ -194,6 +211,7 @@ public class XGroovy
 		
 	}
 	
+	/*
     public Object get(String key){
     	XEIATT a = this.globals.get(key);
 		return a.getValue();
@@ -207,14 +225,32 @@ public class XGroovy
 		this.globals.add(key, svalue);
 		this.globalsChanges.add(key, svalue);
 	}
-	
+	*/
 	/****************************************************************/
 
 	private XEIDTO  runScript(ServletContext context,Binding binding , String script){
 			
 		groovy = new GroovyShell(binding);
 		
-		//binding.setProperty(Xonst.groovy, groovy);
+		
+		this.globals.addListener(new XEIDTOListener() {
+			
+			@Override
+			public void onChangeRel(String att, XEIDTO value) {
+				XGroovy.this.globalsChanges.addRel(att, value);
+				
+			}
+			
+			@Override
+			public void onChangeAtt(String att, XEIATT value) {
+				XGroovy.this.globalsChanges.add(att, value);
+			}
+		});
+		
+		
+		binding.setProperty("globals",this.globals);
+		binding.setProperty("cursor",this.cursor);
+		binding.setProperty("back",this.back);
 		//binding.setProperty(Xonst.session, server.getSession());
 		
 		script = this.preProcessScript(script);
@@ -250,7 +286,8 @@ public class XGroovy
 
 		XEIATT a = dtoFactory.createAttDTO(this.globalsChanges);
 		dto.add(Xonst.XE_GLOBALS_CHANGES, a);
-
+		
+		
 				
 		return dto;
 	}

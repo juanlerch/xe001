@@ -6,13 +6,13 @@ b = ui button
 caption "hello !"
 
 onClick  begin
-		 if  ("hello !"==  xur.get("caption").value)
+		 if  ("hello !"==  cursor.get("caption").value)
 		     caption  "bye!" 
 		else 
 		     caption  "hello !" 
 end
 
-set xur.xuid.value,xur
+set cursor.xuid.value,cursor
 go win
 center b
 

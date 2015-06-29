@@ -3,31 +3,31 @@ for (t=1;t<=5;t++){
 	n1 =ui button
 	caption "north " + t;
 	onClick begin
-	  caption xur.caption.value + "!"
+	  caption cursor.caption.value + "!"
 	end  
 
 	w1 =ui button
 	caption  spaces + "west  " + t + spaces;
     onClick begin
-	  caption xur.caption.value + "!"
+	  caption cursor.caption.value + "!"
 	end 
 	
 	c1 =ui button
 	caption  spaces + "center  " + t + spaces;
 	onClick begin
-	  caption xur.caption.value + "!"
+	  caption cursor.caption.value + "!"
 	end 
 
 	e1 =ui button
 	caption  spaces + "east  " + t + spaces;
 	onClick begin
-	  caption xur.caption.value + "!"
+	  caption cursor.caption.value + "!"
 	end 
 
 	s1 =ui button
 	caption "south " + t;
 	onClick begin
-	  caption xur.caption.value + "!"
+	  caption cursor.caption.value + "!"
 	end 
 
 	p1= ui panel

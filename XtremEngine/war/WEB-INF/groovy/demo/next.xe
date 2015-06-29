@@ -6,30 +6,34 @@ d.getEntryKey()
 s = d.get("xe_demo_run")
 s= s.value
 
-xur = d
+cursor = d
 if (s == "demo/demo01.xe") {
         
-	att xe_demo_prev:"demo/demo01.xe" 
-	att xe_demo_run:"demo/demo02.xe"
-	att xe_demo_next:"demo/demo03.xe"
+	set xe_demo_prev:"demo/demo01.xe" 
+	set xe_demo_run:"demo/demo02.xe"
+	set xe_demo_next:"demo/demo03.xe"
 }
 else if (s == "demo/demo02.xe") {
-	att xe_demo_prev:"demo/demo02.xe" 
-	att xe_demo_run:"demo/demo03.xe"
-	att xe_demo_next:"demo/demo04.xe"
+	set xe_demo_prev:"demo/demo02.xe" 
+	set xe_demo_run:"demo/demo03.xe"
+	set xe_demo_next:"demo/demo04.xe"
 }
 else if (s == "demo/demo03.xe") {
-	att xe_demo_prev:"demo/demo03.xe" 
-	att xe_demo_run:"demo/demo04.xe"
-	att xe_demo_next:"demo/demo05.xe"
+	set xe_demo_prev:"demo/demo03.xe" 
+	set xe_demo_run:"demo/demo04.xe"
+	set xe_demo_next:"demo/demo05.xe"
 }
 else if (s == "demo/demo04.xe") {
-	att xe_demo_prev:"demo/demo04.xe" 
-	att xe_demo_run:"demo/demo05.xe"
-	att xe_demo_next:"demo/demo06.xe"
+	set xe_demo_prev:"demo/demo04.xe" 
+	set xe_demo_run:"demo/demo05.xe"
+	set xe_demo_next:"demo/demo06.xe"
 }
-
-xur["xe_demo_run"]
+else if (s == "demo/demo05.xe") {
+	set xe_demo_prev:"demo/demo05.xe" 
+	set xe_demo_run:"demo/demo06.xe"
+	set xe_demo_next:"demo/demo07.xe"
+}
+cursor["xe_demo_run"]
 
 
 
@@ -41,7 +45,9 @@ t2 = xe.util.loadSavedScript(s)
 t = get "xe_demo_text"
 
 go t
-
 text t2
+go back
 
+go globals 
 set "Demo",d
+go back

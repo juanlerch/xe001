@@ -1,34 +1,40 @@
 
-ui =  { action  -> xur = action(); xur } 
+ui =  { action  -> cursor = action(); cursor } 
 
-update = {prop,value->xe.ui.update(xur,prop,value)}
+update = {prop,value->xe.ui.update(cursor,prop,value)}
 
 widget = { type -> 
-           data type
+           data type:type
            xuid= xe.xid()
-           att xuid:xuid
+           set xuid:xuid
            xe.ui.update(xuid,type,true);
            s= load type
            xe.evaluate(s)
-           xur
+           cursor
         }
 
-html =   { xur = widget "HTML";xur}
+html =   { cursor = widget "HTML";cursor}
 
-button = { xur = widget "Button";xur}
+button = { cursor = widget "Button";cursor}
 
-textarea = {xur = widget "TextArea";xur}
+textarea = {cursor = widget "TextArea";cursor}
 
-panel = {  xur = widget "Panel";xur }
+panel = {  cursor = widget "Panel";cursor }
 
 
-window = {xur = widget "DialogBox";xur}        
+window = {cursor = widget "DialogBox";cursor}        
 
 mainview = {
+          go globals
           d = get "xeMainView"
           s = load d.name
     	  eval s
-          xur = d
+          cursor = d
 } 
-
-setmainview = { a->	set "xeMainView", a} 
+ 
+setmainview = { a-> 
+                go globals	
+                set xeMainView:a
+                go back
+                cursor                
+              } 

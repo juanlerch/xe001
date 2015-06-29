@@ -1,7 +1,8 @@
 caption = {caption->
-           att    caption:caption
+           //cursor -> DialogBox 
+           set  caption:caption
 		   update "caption",caption
-           xur
+           cursor
           }
 
 north =  {x -> update "north",x }

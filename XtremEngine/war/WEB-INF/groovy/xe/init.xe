@@ -1,6 +1,4 @@
 
 ui panel
-
-setmainview xur
-
 update "styleName","cw-DockPanel"
+setmainview cursor

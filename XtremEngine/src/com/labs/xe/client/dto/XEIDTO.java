@@ -34,4 +34,7 @@ public interface XEIDTO extends IsSerializable,Serializable{
 	public Object  getValueAsObject(String name);
 
 	public String toString(int deep);
+	
+	public void addListener(XEIDTOListener listener);
+	
 }

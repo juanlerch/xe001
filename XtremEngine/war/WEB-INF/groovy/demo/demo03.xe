@@ -8,7 +8,7 @@ html begin
 
 end
 
-h = xur
+h = cursor
 
 ui mainview
 center h 

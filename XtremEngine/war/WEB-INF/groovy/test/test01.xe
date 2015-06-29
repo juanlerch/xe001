@@ -1,8 +1,8 @@
 b = ui button
-caption "hello ! " + xur.xuid
+caption "hello ! " + cursor.xuid
 
 onClick  begin
-	     caption  "bye! " + xur.xuid 
+	     caption  "bye! " + cursor.xuid 
 end
 
 ui mainview

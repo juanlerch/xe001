@@ -2,12 +2,12 @@
 
 john = data type:"Person" 
 set firstName:"John"
-set lastName:"Lennon"  unique:true
+set lastName:"Lennon"  
 
 
 yoko  = data type:"Person"
 set	firsName:"Yoko"
-set   lastName: "Ono"
+set lastName: "Ono"
 
 rel husband:john
 
