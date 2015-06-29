@@ -21,7 +21,14 @@ public String toString() {
 	return value;
 }
 	
+public XEATTString() {
 	
+}
+	
+@Override
+public String toString(int deep) {
+	return value;
+}
 	
 	
 }

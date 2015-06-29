@@ -35,7 +35,7 @@ public class XGroovy
 {
 	public static java.util.Map<String,Object> cache = new HashMap<String,Object>();
 	
-	public static boolean debug=false;
+	public static boolean debug=true;
 	 XtremEngineServer server;
 	 XUI                 ui;
 	 XDB				 db;

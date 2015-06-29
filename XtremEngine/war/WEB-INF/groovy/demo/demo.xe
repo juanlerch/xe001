@@ -39,9 +39,9 @@ south pre
 south run
 south   next
 
-d = data "Demo"
-att "xe_demo_prev",""
-att "xe_demo_run", "demo/demo01.xe"
-att "xe_demo_next", "demo/demo02.xe"
+d = data type:"Demo"
+att xe_demo_prev:""
+att xe_demo_run:"demo/demo01.xe"
+att xe_demo_next:"demo/demo02.xe"
 
 set "Demo",d

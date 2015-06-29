@@ -1,5 +1,5 @@
 caption = {caption->
-           att    "caption",caption
+           att    caption:caption
 		   update "caption",caption
            xur
           }

@@ -1,5 +1,6 @@
 package com.labs.xe.server.xdb.gae;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -23,7 +24,7 @@ import com.labs.xe.shared.Xonst;
 public class XDBGAE2 implements XDB {
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	XEDTOFactory factory = new XEDTOFactory();
-	
+	List<Long> savedKeys  = new ArrayList<Long>();
 	private void waitKey(Key k){
 		int t = 0;
 		while (!k.isComplete() && t<100) {
@@ -49,20 +50,24 @@ public class XDBGAE2 implements XDB {
 	
 	private Entity findOrCreateEntity(XEIDTO data){
 		Entity entity  = null;
-		String xdbid = data.getValueAsString(Xonst.xdbid);  
+		String sxdbid = data.getValueAsString(Xonst.xdbid);  
 		
-		if (xdbid != null){ 
+		if (sxdbid != null){ 
+			Long xdbid  =  Long.parseLong(sxdbid);
 			Key key = KeyFactory.createKey(Xonst.DB_ENTITY, xdbid);
 			try {
 					entity = datastore.get(key);  //find 
 				} catch (EntityNotFoundException e) {
 					entity = new Entity(Xonst.DB_ENTITY,xdbid);  	//not found: create with xdbid	
+					Key k = datastorePutAndWait(entity);
 				}
 		} else {
 			entity = new Entity(Xonst.DB_ENTITY); //new 
+			Key k = datastorePutAndWait(entity);
+			data.add(Xonst.xdbid, factory.createAttString(""+ k.getId()));
+			
 		} 
-		entity.setProperty(Xonst.xdbid, xdbid);
-		datastorePutAndWait(entity);
+		//entity.setProperty(Xonst.xdbid, xdbid);
 		return entity;
 	}
 	
@@ -155,6 +160,13 @@ public class XDBGAE2 implements XDB {
 	private Key saveAndReturnKey   (XEIDTO data){
 		Entity entity  = findOrCreateEntity(data);
 		
+		//prevent to make a recursive save
+		if (savedKeys.contains(entity.getKey().getId())) 
+			return entity.getKey();
+		else{
+			savedKeys.add(entity.getKey().getId());
+		}
+		
 	   //atributtes;	
 		for (String name:data.getEntryKey()){
 			Entity prop = findOrCreateAtt(entity.getKey(),name, data.getValueAsObject(name));
@@ -182,6 +194,7 @@ public class XDBGAE2 implements XDB {
 	@Override
 	public XEIDTO save   (XEIDTO data){
 		saveAndReturnKey(data);
+		this.savedKeys.clear();
 		return data;
 	}
 	

@@ -1,46 +1,17 @@
-//Persistence data: Beatle Family
+//Persist: john and yoko
 
-john = data type:"Person"
-att firstName:"John"
-att lastName:"Lennon"
-
-
-yoko  = data type:"Person",
-att		firsName:"Yoko",
-att       lastName: "Ono"
-rel   conyuge:john
-
-jean = data type:"Person"
-att firstName:"Jean"
-att lastName:john.lastName
-
-julian = data type:"Person"
-att firstName:"Julian"
-att lastName:john.lastName
+john = data type:"Person" 
+set firstName:"John"
+set lastName:"Lennon"  unique:true
 
 
-go john
-rel sun:[jean,julian]
+yoko  = data type:"Person"
+set	firsName:"Yoko"
+set   lastName: "Ono"
 
-go jean
-rel brother:julian,reciproco:true
+rel husband:john
 
+go john 
+rel wife:yoko
 
-beatles = data type:"Band"
-att name:"Beatles"
-
-paul = data type:"Person"
-att name:"Paul"
-att play:"Guitar"
-
-ringo = data type:"Person"
-att name:"Ringo"
-att play:"Drumps" //bateria
-
-george  = data type:"Person"
-att name:""
-att play:"Drumps" //bateria
-
-
-
-
+save  john

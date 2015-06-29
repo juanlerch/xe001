@@ -1,3 +1,4 @@
+//simple button
 b = ui button
 caption "hello ! " + xur.xuid
 

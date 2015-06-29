@@ -23,7 +23,7 @@ get  = {x -> c= xe.get(x);
 set  = {x,y -> xe.set(x,y);}
 
 
-data = { name-> xur = xe.createDTO(name); xur}
+data = {map-> xur = xe.createDTO(map.type); xur}
 
 att  = {map-> map.each{
 		      key, value -> x = xe.createATT(xur,key,value);x;

@@ -33,5 +33,5 @@ public interface XEIDTO extends IsSerializable,Serializable{
 	public Date getValueAsDate(String name);
 	public Object  getValueAsObject(String name);
 
-	
+	public String toString(int deep);
 }

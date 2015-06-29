@@ -9,21 +9,25 @@ s= s.value
 xur = d
 
 if (s == "demo/demo01.xe") {
-	att "xe_demo_prev","" 
-	att "xe_demo_run" ,"demo/demo01.xe"
-	att "xe_demo_next","demo/demo02.xe"
+	att xe_demo_prev:"" 
+	att xe_demo_run:"demo/demo01.xe"
+	att xe_demo_next:"demo/demo02.xe"
 }
 else if (s == "demo/demo02.xe") {
-	att "xe_demo_prev","" 
-	att "xe_demo_run" ,"demo/demo01.xe"
-	att "xe_demo_next","demo/demo02.xe"
+	att xe_demo_prev:"" 
+	att xe_demo_run:"demo/demo01.xe"
+	att xe_demo_next:"demo/demo02.xe"
 }
 else if (s == "demo/demo03.xe") {
-	att "xe_demo_prev","demo/demo01.xe" 
-	att "xe_demo_run" ,"demo/demo02.xe"
-	att "xe_demo_next","demo/demo03.xe"
+	att xe_demo_prev:"demo/demo01.xe" 
+	att xe_demo_run:"demo/demo02.xe"
+	att xe_demo_next:"demo/demo03.xe"
 }
- 
+else if (s == "demo/demo04.xe") {
+	att xe_demo_prev:"demo/demo02.xe" 
+	att xe_demo_run:"demo/demo03.xe"
+	att xe_demo_next:"demo/demo04.xe"
+} 
 
 xur["xe_demo_run"]
 

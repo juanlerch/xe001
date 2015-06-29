@@ -18,9 +18,12 @@ public class XEATT_XDTO implements XEIATT<XEIDTO> {
 	
 @Override
 public String toString() {
-	return value.toString();
+	return value.toString(3);
 }
-	
+	@Override
+	public String toString(int deep) {
+		return value.toString(deep);
+	}
 	
 
 }

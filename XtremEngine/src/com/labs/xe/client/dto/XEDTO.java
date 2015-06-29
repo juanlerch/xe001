@@ -116,9 +116,29 @@ public class XEDTO implements XEIDTO {
 	
 	@Override
 	public String toString() {
-		String reponse = "type:" + name + " att: " + this.attributes +  " rel: " + this.relations;   
-		return reponse;
+		return toString(3);
 	}
 	
-	
+	@Override
+	public String toString(int deep) {
+		String response = "{type:" + name + " attributes: { " ;
+		if (deep>0){
+			for (String key: this.attributes.keySet()){
+				response += response +" " +  key + ":" + this.attributes.get(key).toString(deep-1) + ",";
+			}
+			for (String key: this.relations.keySet()){
+				response += response +  " relations {" + key + ":" ;
+				for (XEIDTO dto:this.relations.get(key)){
+					response +=	dto.toString(deep-1) +  "," ;
+				}
+				response += "}";
+			}
+		}
+		else{
+			response += "...";
+		}
+		
+		return response + "}";
+	}
+
 }

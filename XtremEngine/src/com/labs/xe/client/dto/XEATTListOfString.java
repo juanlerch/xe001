@@ -17,7 +17,16 @@ public class XEATTListOfString implements XEIATT <List<String>>{
 		this.value = value;
 	}
 	
-		
 	
+	public XEATTListOfString() {
+
+
+	}
+
+	
+	@Override
+	public String toString(int deep) {
+		return value.toString();
+	}
 	
 }

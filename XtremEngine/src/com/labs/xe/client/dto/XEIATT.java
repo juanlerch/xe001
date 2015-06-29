@@ -8,7 +8,8 @@ public interface XEIATT<T> extends IsSerializable,Serializable{
 
 	    public T getValue();
 	    public void setValue(T t);
-
+	    
+	    public String toString(int deep);
 
 	}
 	
