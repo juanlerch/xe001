@@ -1,5 +1,5 @@
-
-d =  get "Demo"
+go globals
+d =  get "demo"
 
 d.getEntryKey()
 
@@ -50,4 +50,4 @@ go t
 text t2
 
 go globals 
-set "Demo",d
+set demo:d

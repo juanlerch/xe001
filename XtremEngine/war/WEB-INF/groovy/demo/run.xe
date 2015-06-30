@@ -1,4 +1,5 @@
-demo = get "Demo"
+go globals
+demo = get "demo"
 s = demo.get("xe_demo_run").value
 
 run s

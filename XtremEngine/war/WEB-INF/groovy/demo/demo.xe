@@ -7,9 +7,8 @@ caption "Demo"
 // create the text and load de first demo script
 txt = ui textarea
 s = xe.util.loadSavedScript("demo/demo01.xe")
-text s
+text s 
 
-set "xe_demo_text",cursor
 
 // create the prev button
 pre=ui button 
@@ -43,5 +42,7 @@ d = data type:"Demo"
 set xe_demo_prev:""
 set xe_demo_run:"demo/demo01.xe"
 set xe_demo_next:"demo/demo02.xe"
+set xe_demo_text:txt
 
-set "Demo",d
+go globals
+set demo:d

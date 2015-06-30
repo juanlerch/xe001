@@ -1,9 +1,8 @@
+go globals
+d =  get "demo"
 
-d =  get "Demo"
-
-d.getEntryKey()
-
-s = d.get("xe_demo_run")
+go d
+s = get "xe_demo_run"
 s= s.value
 
 cursor = d
@@ -49,5 +48,4 @@ text t2
 go back
 
 go globals 
-set "Demo",d
-go back
+set demo:d

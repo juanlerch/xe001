@@ -28,12 +28,26 @@ go  =  {param -> if (param==back){
 
 data = {map-> cursor = xe.createDTO(map.type); cursor}
 
-set   = {map-> map.each{
-		      key, value -> x = xe.createATT(cursor,key,value);x;
-             }
+set   = {map->
+            if (map.size() != 2) { 
+                map.each{
+			      key, value -> x = xe.createATT(cursor,key,value);x;
+	             }
+            }
+			else 
+				if (map.size()==2 && map["key"] != null && map["value"] != null )
+				{
+				     x = xe.createATT(cursor,map["key"],map["value"]);x;
+				}
+			else 
+	            map.each{
+			      key, value -> x = xe.createATT(cursor,key,value);x;
+	             }
        }
 
-get  = {x -> c= cursor[x]; c.value}       
+get  = {x -> c= cursor[x]
+             if (c!=null) c.value
+             else null}       
 
 rel  = {map-> map.each{
 		      key, value -> x = xe.createREL(cursor,key,value);x;

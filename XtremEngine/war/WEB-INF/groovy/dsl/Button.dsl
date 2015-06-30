@@ -13,7 +13,7 @@ onClick = {
 
     go globals
     	pkey = myButton.xuid.value
-    	set pkey:myButton //save de boton as global
-    
+    	set  key:pkey , value:myButton 
+    	
     go back
 } 

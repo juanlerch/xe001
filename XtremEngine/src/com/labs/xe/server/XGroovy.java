@@ -1,34 +1,19 @@
 package com.labs.xe.server;
 
 import groovy.lang.Binding;
-import java.util.Stack;
-
 import groovy.lang.GroovyShell;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Stack;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
-import com.google.appengine.api.taskqueue.DeferredTask;
-import com.google.appengine.api.taskqueue.Queue;
-import com.google.appengine.api.taskqueue.QueueFactory;
-import com.google.appengine.api.taskqueue.TaskOptions;
-import com.google.gwt.dev.util.DefaultTextOutput;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEDTOFactory;
 import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
 import com.labs.xe.client.dto.XEIDTOFactory;
 import com.labs.xe.client.dto.XEIDTOListener;
-import com.labs.xe.server.dsl.ui.Base;
 import com.labs.xe.server.dsl.ui.XDSLUtil;
 import com.labs.xe.server.dsl.ui.XUI;
 import com.labs.xe.server.xdb.XDB;
@@ -111,8 +96,9 @@ public class XGroovy
 
 				XDSLUtil xutil = new XDSLUtil(context);
 				String script  = xutil.load(component);
-				script  +=  "cursor= get '"+id + "'\n"; 
-				script += "eval(cursor."+name+".value)\n";
+				script  +=  " go globals;" + "\n";;
+				script  +=  " cursor = get '"+id + "'\n"; 
+				script +=   " eval(cursor."+name+".value)\n";
 				return runScript(context,binding,script);
 			}
 		}
