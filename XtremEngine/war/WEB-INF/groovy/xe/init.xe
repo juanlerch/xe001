@@ -2,3 +2,4 @@
 ui panel
 update "styleName","cw-DockPanel"
 setmainview cursor
+demo()

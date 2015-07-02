@@ -1,6 +1,6 @@
-//Persist: john and yoko
+//Demo 4:  Persist: john and yoko
 
-john = data type:"Person" 
+john = data type:"Person" , id:"johnlennon", preview:"yoko's love"
 set firstName:"John"
 set lastName:"Lennon"  
 

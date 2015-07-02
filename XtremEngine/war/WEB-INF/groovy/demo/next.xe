@@ -3,9 +3,8 @@ d =  get "demo"
 
 go d
 s = get "xe_demo_run"
-s= s.value
 
-cursor = d
+
 if (s == "demo/demo01.xe") {
         
 	set xe_demo_prev:"demo/demo01.xe" 
@@ -32,13 +31,9 @@ else if (s == "demo/demo05.xe") {
 	set xe_demo_run:"demo/demo06.xe"
 	set xe_demo_next:"demo/demo07.xe"
 }
-cursor["xe_demo_run"]
 
+s =  get "xe_demo_run"
 
-
-s = d.get("xe_demo_run").value
-
-s
 t2 = xe.util.loadSavedScript(s)
 
 t = get "xe_demo_text"

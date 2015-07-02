@@ -1,5 +1,7 @@
-// create a  window
+// Demo 2: create a  window
+
 win = ui window
+
 caption "Demo 2"
 
 b = ui button
@@ -12,9 +14,10 @@ onClick  begin
 		     caption  "hello !" 
 end
 
-set cursor.xuid.value,cursor
+xuid = get "xuid"
+
+go globals
+set key:xuid , value:b
+
 go win
 center b
-
-
-

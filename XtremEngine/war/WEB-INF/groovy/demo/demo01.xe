@@ -1,4 +1,5 @@
-//simple button
+
+//Demo 1: simple button
 b = ui button
 caption "hello ! " + cursor.xuid
 

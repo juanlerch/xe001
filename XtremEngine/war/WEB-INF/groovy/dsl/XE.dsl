@@ -26,7 +26,13 @@ go  =  {param -> if (param==back){
              
 //-------------------------------------------------------------------------------/
 
-data = {map-> cursor = xe.createDTO(map.type); cursor}
+data = {map-> cursor = xe.createDTO(map.type); cursor
+        map.remove("type")
+		map.each{
+		     key, value -> x = xe.createATT(cursor,key,value);x;
+	    }
+	    cursor
+       }
 
 set   = {map->
             if (map.size() != 2) { 

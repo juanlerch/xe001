@@ -1,6 +1,6 @@
-//Persistence: The Beatle 
+//Demo 5 Persistence: The Beatle 
 
-john = data type:"Person" id:"johnLennon"
+john = data type:"Person" , id:"johnlennon", preview:"Leader of Beatles"
 
 set firstName:"John"
 set lastName:"Lennon"

@@ -1,6 +1,6 @@
-//Query The Beatles Bands
+//Demo 6: Query The Beatles Bands
 
-query type:"Band" att:"name" rel:"members"
+query type:"Band" att:"name", rel:"members"
         
 filter name:equals value:"The Beatles"
 

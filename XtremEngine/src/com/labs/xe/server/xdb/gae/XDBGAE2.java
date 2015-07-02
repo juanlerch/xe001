@@ -50,7 +50,10 @@ public class XDBGAE2 implements XDB {
 	
 	private Entity findOrCreateEntity(XEIDTO data){
 		Entity entity  = null;
-		String sxdbid = data.getValueAsString(Xonst.xdbid);  
+		String sxdbid = data.getValueAsString(Xonst.xdbid); //datastorage-id  
+		String type = data.getName(); 
+		String id   = data.getValueAsString("id");           //user id
+		if (id!=null) id=id.toLowerCase();
 		
 		if (sxdbid != null){ 
 			Long xdbid  =  Long.parseLong(sxdbid);
@@ -62,11 +65,46 @@ public class XDBGAE2 implements XDB {
 					Key k = datastorePutAndWait(entity);
 				}
 		} else {
+			boolean createNew=false;
+			if (id!= null){
+				//find by user id
+				Query q = new Query(Xonst.DB_ENTITY);
+				
+			    Filter fid= new FilterPredicate("id",FilterOperator.EQUAL,id);
+
+			    
+			    Filter ftype =
+			    		  new FilterPredicate("type",
+			    		                      FilterOperator.EQUAL,
+			    		                      type);
+			    Filter filter = CompositeFilterOperator.and(fid,ftype);
+			    
+			    q.setFilter(filter);
+			    
+				PreparedQuery pq =  datastore.prepare(q);
+				boolean find = false;
+				for(Entity e : pq.asIterable()){
+					find = true;
+					entity = e;
+				}
+				if (find){
+					entity.setProperty("preview", data.getValueAsString("preview"));
+					createNew=false;
+				}
+				else{
+					createNew=true;
+				}
+			}
+			else createNew=true;
+		if (createNew){	
 			entity = new Entity(Xonst.DB_ENTITY); //new 
+			entity.setProperty("type",  type );
+			entity.setProperty("id",    id );
+			entity.setProperty("preview", data.getValueAsString("preview"));
 			Key k = datastorePutAndWait(entity);
 			data.add(Xonst.xdbid, factory.createAttString(""+ k.getId()));
-			
-		} 
+		}
+	} 
 		//entity.setProperty(Xonst.xdbid, xdbid);
 		return entity;
 	}
