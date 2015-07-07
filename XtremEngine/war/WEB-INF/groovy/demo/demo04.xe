@@ -1,17 +1,20 @@
 //Demo 4:  Persist: john and yoko
 
 john = data type:"Person" , id:"johnlennon", preview:"yoko's love"
-set firstName:"John"
-set lastName:"Lennon"  
+with john begin
+	set firstName:"John"
+	set lastName:"Lennon"  
 
 
-yoko  = data type:"Person"
-set	firsName:"Yoko"
-set lastName: "Ono"
+	yoko  = data type:"Person"
+	with yoko 
+		set	firsName:"Yoko"
+		set lastName: "Ono"
+		rel husband:john
+	end	
 
-rel husband:john
+	rel wife:yoko
+	
+	save john
+end
 
-go john 
-rel wife:yoko
-
-save  john

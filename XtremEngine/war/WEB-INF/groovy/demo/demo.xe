@@ -1,48 +1,53 @@
 // create the window
-win = ui window
-caption "Demo"
+win = ui create:"DialogBox"
+with win begin 
+	set caption: "Demo"
 
 
 
-// create the text and load de first demo script
-txt = ui textarea
-s = xe.util.loadSavedScript("demo/demo01.xe")
-text s 
+	txt = ui create:"TextArea"
+	with txt begin 
+		s = xe.util.loadSavedScript("demo/demo01.xe")
+		set text:s
+	end 	 
 
+	pre= ui create:"Button" 
+	with pre begin 
+		set caption:" <- Prev"
+		onClick open
+	              run "demo/prev.xe"
+	         close
+	end 
 
-// create the prev button
-pre=ui button 
-caption " <- Prev"
-onClick  begin
-    run "demo/prev.xe"
-end
+	run = ui create:"Button"
+	with run begin 
+	  set caption:" Run "
+	  onClick open
+			run "demo/run.xe"
+	   close
+	end    
 
-// create the run button
-run = ui button
-caption " Run "
-onClick  begin
-	run "demo/run.xe"
-end
+	next = ui create:"Button"
+	with next begin 
+		set caption:" Next ->"
+		onClick open
+	    	run "demo/next.xe"
+		close
 
-// create the next button
-next = ui button
-caption " Next ->"
-onClick  begin
-	    run "demo/next.xe"
-end
+	center txt
+	south pre
+	south run
+	south   next
 
-// add buttons to the windows
-go win
-center txt
-south pre
-south run
-south   next
-
-d = data type:"Demo"
-set xe_demo_prev:""
-set xe_demo_run:"demo/demo01.xe"
-set xe_demo_next:"demo/demo02.xe"
-set xe_demo_text:txt
-
-go globals
-set demo:d
+	d = data type:"Demo"
+	with d begin
+		set xe_demo_prev:""
+		set xe_demo_run:"demo/demo01.xe"
+		set xe_demo_next:"demo/demo02.xe"
+		set xe_demo_text:txt
+	end
+end 
+ 
+with globals begin 
+	set demo:d
+end 

@@ -11,9 +11,8 @@ onClick = {
     set onClick:s
     myButton = cursor
 
-    go globals
+    with globals begin 
     	pkey = myButton.xuid.value
     	set  key:pkey , value:myButton 
-    	
-    go back
+    end
 } 

@@ -30,7 +30,7 @@ for (t=1;t<=5;t++){
 	  caption cursor.caption.value + "!"
 	end 
 
-	p1= ui panel
+	p1= ui create:"Panel"
 	north n1
 	west w1
 	center c1

@@ -1,46 +1,45 @@
-go globals
-d =  get "demo"
+with globals begin
 
-go d
-s = get "xe_demo_run"
-
-
-if (s == "demo/demo01.xe") {
-        
-	set xe_demo_prev:"demo/demo01.xe" 
-	set xe_demo_run:"demo/demo02.xe"
-	set xe_demo_next:"demo/demo03.xe"
-}
-else if (s == "demo/demo02.xe") {
-	set xe_demo_prev:"demo/demo02.xe" 
-	set xe_demo_run:"demo/demo03.xe"
-	set xe_demo_next:"demo/demo04.xe"
-}
-else if (s == "demo/demo03.xe") {
-	set xe_demo_prev:"demo/demo03.xe" 
-	set xe_demo_run:"demo/demo04.xe"
-	set xe_demo_next:"demo/demo05.xe"
-}
-else if (s == "demo/demo04.xe") {
-	set xe_demo_prev:"demo/demo04.xe" 
-	set xe_demo_run:"demo/demo05.xe"
-	set xe_demo_next:"demo/demo06.xe"
-}
-else if (s == "demo/demo05.xe") {
-	set xe_demo_prev:"demo/demo05.xe" 
-	set xe_demo_run:"demo/demo06.xe"
-	set xe_demo_next:"demo/demo07.xe"
-}
-
-s =  get "xe_demo_run"
-
-t2 = xe.util.loadSavedScript(s)
-
-t = get "xe_demo_text"
-
-go t
-text t2
-go back
-
-go globals 
-set demo:d
+	d =  get "demo"
+	with d begin 
+		s = get "xe_demo_run"
+		
+		
+		if (s == "demo/demo01.xe") {
+			set xe_demo_prev:"demo/demo01.xe" 
+			set xe_demo_run:"demo/demo02.xe"
+			set xe_demo_next:"demo/demo03.xe"
+		}
+		else if (s == "demo/demo02.xe") {
+			set xe_demo_prev:"demo/demo02.xe" 
+			set xe_demo_run:"demo/demo03.xe"
+			set xe_demo_next:"demo/demo04.xe"
+		}
+		else if (s == "demo/demo03.xe") {
+			set xe_demo_prev:"demo/demo03.xe" 
+			set xe_demo_run:"demo/demo04.xe"
+			set xe_demo_next:"demo/demo05.xe"
+		}
+		else if (s == "demo/demo04.xe") {
+			set xe_demo_prev:"demo/demo04.xe" 
+			set xe_demo_run:"demo/demo05.xe"
+			set xe_demo_next:"demo/demo06.xe"
+		}
+		else if (s == "demo/demo05.xe") {
+			set xe_demo_prev:"demo/demo05.xe" 
+			set xe_demo_run:"demo/demo06.xe"
+			set xe_demo_next:"demo/demo07.xe"
+		}
+		
+		s =  get "xe_demo_run"
+		
+		t2 = xe.util.loadSavedScript(s)
+		
+		t = get "xe_demo_text"
+		
+		with t begin
+			text t2
+		end 
+	end
+	set demo:d
+end

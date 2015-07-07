@@ -7,7 +7,9 @@ import com.google.appengine.api.modules.ModulesService;
 import com.google.appengine.api.modules.ModulesServiceFactory;
 import com.labs.xe.client.admin.XUIManager;
 import com.labs.xe.client.dto.XEDTOFactory;
+import com.labs.xe.client.dto.XEIATT;
 import com.labs.xe.client.dto.XEIDTO;
+import com.labs.xe.client.dto.XEIDTOListener;
 import com.labs.xe.client.ui.XUIButton;
 import com.labs.xe.client.ui.XUIDialogBox;
 import com.labs.xe.client.ui.XUIDockPanel;
@@ -15,7 +17,7 @@ import com.labs.xe.client.ui.XUIHTML;
 import com.labs.xe.client.ui.XUITextArea;
 import com.labs.xe.shared.Xonst;
 
-public class XUI extends Base{
+public class XUI extends Base implements XEIDTOListener{
 
 	private XEDTOFactory factory = new XEDTOFactory();
 	
@@ -44,7 +46,15 @@ public class XUI extends Base{
 		return "s"  +  instance  + count++;
 	}
 	
-
+	public XEIDTO onCreate(XEIDTO dto){
+		this.updateUiCreateNew (dto.getValueAsString("xuid"), dto.getName());
+		dto.addListener(this);
+		return dto;
+	}
+	
+	
+	
+/*
 	public TextArea textArea(){
 		TextArea b = new TextArea();
 		
@@ -91,15 +101,15 @@ public class XUI extends Base{
 	}
 	
 	
+	*/
 	
 	
-	
-	public List<XEIDTO> getEvents() {
+	public  List<XEIDTO> getEvents() {
 		return events1;
 	}
-	
 
-	public void update(Base base,String what, Base value) {
+
+/*	private  void update(Base base,String what, Base value) {
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
 		 
 		dto.add(XUIManager.XUI_id,factory.createAttString(base.xuid));
@@ -112,9 +122,9 @@ public class XUI extends Base{
 
 		this.events1.add(dto); 
 		
-	}
+	}*/
 
-	public void update(XEIDTO base,String what, XEIDTO value) {
+	/*private void update(XEIDTO base,String what, XEIDTO value) {
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
 		 
 		dto.add(XUIManager.XUI_id,factory.createAttString(base.get(Xonst.xuid)));
@@ -127,22 +137,24 @@ public class XUI extends Base{
 
 		this.events1.add(dto); 
 		
-	}
+	}*/
 	
-	public void update(Base base,String what, String value) {
+	/*private  void update(Base base,String what, String value) {
 		String xid = base.xuid; 
 		String class1 = base.getClass().getSimpleName();
 		this.update(xid, class1,what,value); 
 		
 	}
 
-	public void update(XEIDTO dto,String what, String value) {
+	
+	private void update(XEIDTO dto,String what, String value) {
 		String xid = dto.get(Xonst.xuid).toString(); 
 		String class1 = dto.getName();
 		this.update(xid, class1,what,value); 
 		
 	}	
-	public void update(String xid, Class class1, boolean isNew) {
+	/*
+	private void update(String xid, Class class1, boolean isNew) {
 		String type = class1.getSimpleName();
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
@@ -153,22 +165,21 @@ public class XUI extends Base{
 		
 		this.events1.add(dto);
 		
-	}
+	}*/
 
-	public void update(String xid, String class1, boolean isNew) {
-		String type = class1;
+	private void updateUiCreateNew(String xid, String type) {
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
 		
 		dto.add(XUIManager.XUI_id,factory.createAttString(xid));
 		dto.add(XUIManager.XUI_Type,factory.createAttString(type));
-		dto.add(XUIManager.XUI_isNew,factory.createAttString(isNew));
+		dto.add(XUIManager.XUI_isNew,factory.createAttString(true));
 		
 		this.events1.add(dto);
 		
 	}
 	
-	public void update(String xid, String class1, String what,String value) {
+	private void update(String xid, String class1, String what,String value) {
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
 		
@@ -181,9 +192,11 @@ public class XUI extends Base{
 		this.events1.add(dto);
 		
 	}
-
 	
-	public void update(String xid, Class class1, String what,String value) {
+
+
+	/*
+	private void update(String xid, Class class1, String what,String value) {
 		String type = class1.getSimpleName();
 		
 		XEIDTO dto = factory.create(XUIManager.XUI_UPDATES);
@@ -196,8 +209,18 @@ public class XUI extends Base{
 		dto.add(XUIManager.XUI_update_value, factory.createAttString(value));
 		this.events1.add(dto);
 		
+	}*/
+
+	@Override
+	public void onChangeAtt(XEIDTO source,String att, XEIATT value) {
+		System.out.println("onChangeAtt:" + source.getName()+ ":" + att + ":"  + value);
+		
 	}
 
-
+	@Override
+	public void onChangeRel(XEIDTO source,String att, XEIDTO value) {
+		System.out.println("onChangeRel:" + source.getName()+ ":" + att + ":"  + value);
+		
+	}
 	
 }

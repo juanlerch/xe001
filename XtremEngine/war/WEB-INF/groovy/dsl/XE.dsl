@@ -11,7 +11,7 @@ run =  {a -> s = xe.util.loadSavedScript(a);
                   eval s 
        } 
 
-go  =  {param -> if (param==back){
+/*go  =  {param -> if (param==back){
                     if (back.empty) cursor = null;
                     else cursor =  back.pop()
                  } 
@@ -23,8 +23,10 @@ go  =  {param -> if (param==back){
              }
              cursor
        }
-             
+  */           
 
+             
+//-------------------------------------------------------------------------------/
 with  =  {param ->     back.push(cursor)
                        cursor = param
                        cursor
@@ -34,10 +36,6 @@ end = {if (back.empty) cursor = null;
        else cursor =  back.pop()
        cursor }
 
-
-
-             
-//-------------------------------------------------------------------------------/
 
 data = {map-> cursor = xe.createDTO(map.type); cursor
         map.remove("type")

@@ -1,5 +1,14 @@
 
-ui panel
-update "styleName","cw-DockPanel"
-setmainview cursor
-demo()
+p1 = ui create:"Panel"
+with p1 
+	set styleName:"cw-DockPanel"
+end
+
+
+
+
+with globals begin 
+	set mainview:p1
+end
+
+//demo()

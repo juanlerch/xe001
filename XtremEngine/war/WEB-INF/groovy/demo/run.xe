@@ -1,5 +1,5 @@
-go globals
-demo = get "demo"
-s = demo.get("xe_demo_run").value
-
-run s
+with globals begin
+	demo = get "demo"
+	s = demo.get("xe_demo_run").value
+	run s
+end	

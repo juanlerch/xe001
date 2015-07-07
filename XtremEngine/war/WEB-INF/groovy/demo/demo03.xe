@@ -1,15 +1,15 @@
 //Demo 3: HTML Extension
-ui html
 
-html begin 
+h1 = ui create:"HTML"
+
+with h1 begin 
+
+	set html:open 
            <h1> This is an <b> HTML </b>  </h1>
-
            Hello  <b> WORLD!!!</b>
-
+	close
 end
 
-h = cursor
-
 ui mainview
-center h 
+center h1 
 

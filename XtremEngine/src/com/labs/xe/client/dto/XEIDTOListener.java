@@ -14,7 +14,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public interface XEIDTOListener<T> extends IsSerializable,Serializable{
 
-	void onChangeAtt(String att,XEIATT<T> value);
-	void onChangeRel(String att,XEIDTO value);
+	void onChangeAtt(XEIDTO source, String att,XEIATT<T> value);
+	void onChangeRel(XEIDTO source, String att,XEIDTO value);
 	
 }

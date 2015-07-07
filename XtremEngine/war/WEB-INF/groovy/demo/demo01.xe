@@ -1,12 +1,20 @@
 
 //Demo 1: simple button
-b = ui button
-caption "hello ! " + cursor.xuid
 
-onClick  begin
-	     caption  "bye! " + cursor.xuid 
+aButton = ui create:"Button"
+with aButton begin 
+	set caption:"hello ! " 
+
+	set onClick: open
+	     caption  "bye! "  
+	close
 end
 
-ui mainview
-center b
 
+with globals begin
+	mainview = get "mainview"
+	with mainview
+		center aButton
+	end
+end  
+ 

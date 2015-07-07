@@ -190,8 +190,9 @@ public class XGroovy
 
 	public String preProcessScript(String script){
 		if (script != null ){
-			script=script.replace("begin", "'''");
-			script=script.replace("end", "'''");
+			script=script.replace("begin", "");
+			script=script.replace("open", "'''");
+			script=script.replace("close", "'''");
 		}
 		return script; 
 		
@@ -222,13 +223,13 @@ public class XGroovy
 		this.globals.addListener(new XEIDTOListener() {
 			
 			@Override
-			public void onChangeRel(String att, XEIDTO value) {
+			public void onChangeRel(XEIDTO source, String att, XEIDTO value) {
 				XGroovy.this.globalsChanges.addRel(att, value);
 				
 			}
 			
 			@Override
-			public void onChangeAtt(String att, XEIATT value) {
+			public void onChangeAtt(XEIDTO source, String att, XEIATT value) {
 				XGroovy.this.globalsChanges.add(att, value);
 			}
 		});

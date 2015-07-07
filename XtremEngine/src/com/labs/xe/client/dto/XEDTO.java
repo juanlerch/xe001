@@ -10,7 +10,7 @@ import java.util.Set;
 
 public class XEDTO implements XEIDTO {
     
-	private List<XEIDTOListener> listeners;   
+	transient private List<XEIDTOListener> listeners;   
 	
   	private Map<String,XEIATT> attributes = null;
 
@@ -56,7 +56,7 @@ public class XEDTO implements XEIDTO {
 		    //notificar  a los listener
 		    if (this.listeners!= null && this.listeners.size()>0) {
 		 		for (XEIDTOListener l:this.listeners){
-		 			l.onChangeAtt(name, attribute);
+		 			l.onChangeAtt(this,name, attribute);
 		 		}
 		 	}
 		
@@ -75,7 +75,7 @@ public class XEDTO implements XEIDTO {
 	    //notificar  a los listener
 	    if (this.listeners!= null && this.listeners.size()>0) {
 	 		for (XEIDTOListener l:this.listeners){
-	 			l.onChangeRel(name, dto);
+	 			l.onChangeRel(this,name, dto);
 	 		}
 	 	}
 	    

@@ -1,23 +1,28 @@
 // Demo 2: create a  window
 
-win = ui window
+win = ui create:"DialogBox"
+with win begin
+	caption "Demo 2"
 
-caption "Demo 2"
+	b = ui create:"Button"
+	with b begin
+		caption "hello !"
+	
+		onClick  open
+			 caption1 = get "caption"
+			 if  ("hello !"==  caption1)
+			     caption  "bye!" 
+			else 
+			     caption  "hello !" 
+		close
+	
+		xuid = get "xuid"
+	
+	
+		with globals begin 
+			set key:xuid , value:b
+		end
+	end 	 
 
-b = ui button
-caption "hello !"
-
-onClick  begin
-		 if  ("hello !"==  cursor.get("caption").value)
-		     caption  "bye!" 
-		else 
-		     caption  "hello !" 
-end
-
-xuid = get "xuid"
-
-go globals
-set key:xuid , value:b
-
-go win
-center b
+	center b
+end 	

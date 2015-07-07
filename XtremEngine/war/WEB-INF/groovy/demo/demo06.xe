@@ -10,11 +10,11 @@ myTable = ui datatable
 set  data:result
 
 
-onclick begin
-   band =    request.selectRow
-   members = band.relations.member
-   
-   go
-   set  data:members
-
-end
+onclick open
+	        band =    request.selectRow
+	        members = band.relations.member
+	        go
+	        set  data:members
+	   close
+	   
+	 

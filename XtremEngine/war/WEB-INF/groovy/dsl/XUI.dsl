@@ -1,40 +1,32 @@
 
-ui =  { action  -> cursor = action(); cursor } 
+ui =  { actionMap  -> a1 = widget actionMap.create; a1 } 
 
 update = {prop,value->xe.ui.update(cursor,prop,value)}
 
 widget = { type -> 
-           data type:type
+           w1 = data type:type
            xuid= xe.xid()
            set xuid:xuid
-           xe.ui.update(xuid,type,true);
+           xe.ui.onCreate(w1);
            s= load type
-           xe.evaluate(s)
-           cursor
+           eval s
+           w1
         }
 
-html =   { cursor = widget "HTML";cursor}
-
-button = { cursor = widget "Button";cursor}
-
-textarea = {cursor = widget "TextArea";cursor}
-
-panel = {  cursor = widget "Panel";cursor }
-
-
-window = {cursor = widget "DialogBox";cursor}        
-
+/*
 mainview = {
-          go globals
-          d = get "xeMainView"
-          s = load d.name
-    	  eval s
-          cursor = d
+          with  globals begin
+          	mainview = get "xeMainView"
+          	s = load mainview.name
+    	  	eval s
+          end
+          mainview	
 } 
  
 setmainview = { a-> 
-                go globals	
-                set xeMainView:a
-                go back
+                with  globals begin	
+                	set xeMainView:a
+                end
                 cursor                
               } 
+*/

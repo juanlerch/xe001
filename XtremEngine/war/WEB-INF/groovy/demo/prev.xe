@@ -1,6 +1,6 @@
-go globals
+with globals begin
 	d =  get "demo"
-	go d
+	with  d begin
 		s = get "xe_demo_run"
 		
 		if (s == "demo/demo01.xe") {
@@ -40,9 +40,10 @@ go globals
 
 		t = get "xe_demo_text"
 
-		go t
+		with t begin
 			text t2
-		go back
-	go back 
+		end 
+	end  
 
-set demo:d
+	set demo:d
+end
