@@ -43,17 +43,7 @@ google.appengine.samples.hello.getGreeting = function(id) {
 /**
  * Lists greetings via the API.
  */
-google.appengine.samples.hello.listGreeting = function() {
-  gapi.client.helloworld.greetings.listGreeting().execute(
-      function(resp) {
-        if (!resp.code) {
-          resp.items = resp.items || [];
-          for (var i = 0; i < resp.items.length; i++) {
-            google.appengine.samples.hello.print(resp.items[i]);
-          }
-        }
-      });
-};
+
 
 /**
  * Enables the button callbacks in the UI.
@@ -65,9 +55,7 @@ google.appengine.samples.hello.enableButtons = function() {
         document.querySelector('#id').value);
   });
 
-  var listGreeting = document.querySelector('#listGreeting');
-  listGreeting.addEventListener('click',
-      google.appengine.samples.hello.listGreeting);
+  
 
 };
 /**
