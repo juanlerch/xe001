@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="file:imagenes/campus_favicon.png">
+
+    <title>Administrador</title>
+
+    <!-- CSS de Bootstrap
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles-->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/colors-recursos.css" rel="stylesheet">
+    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- Custom Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- DataTables CSS -->
+    <link href="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+
+    <!-- Timeline CSS -->
+    <link href="dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+  
+
+<!--header-->
+<div class="container">
+<header>
+  <div id="logo"><img src="imagenes/logo.png"></div>
+  <div id="gsf"><img src="imagenes/logo_santa-fe.png"></div>
+</header>
+</div><!--/ header-->
+
+<!--bar-->
+  <div id="full-bar" class="container-fluid">
+      <div id="bar" class="container">
+        <div id="bar-text">RECURSOS PEDAGÓGICOS</div>
+         <div id="user"><span class="glyphicon glyphicon-user"></span> cCattaneo &nbsp;&nbsp;<a href="#"><span class="glyphicon glyphicon-cog"></span> Opciones</a> &nbsp;&nbsp;<a href="#"><span class="glyphicon glyphicon-log-out"></span> Salir</a>
+       </div>
+      </div>
+  </div>
+<!--/bar-->
+   
+<!--nav-->   
+    <nav class="navbar navbar-default">
+        <div class="container"><!-- container -->
+          <div class="navbar-header"><!-- menu collapse -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Menú</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div><!--/ menu collapse -->
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="inicio.html"><span class="glyphicon glyphicon-home"></span> INICIO</a></li>
+                <li><a href="subir_recurso.html"><span class="glyphicon glyphicon-cloud-upload"></span> SUBIR RECURSO</a></li>
+                <li><a href="mis_recursos.html"><span class="glyphicon glyphicon-folder-open"></span>  MIS RECURSOS</a></li>
+                <li class="dropdown active">
+                  <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-list"></span> ADMINISTRAR
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="bandeja_noticias.html">Noticias</a></li>
+                    <li><a href="bandeja_recursos.html">Recursos Pedagógicos</a></li>
+                    <li><a href="bandeja_experiencias.html">Experiencias en el Aula</a></li>
+                    <li><a href="bandeja_blogs.html">Blogs</a></li> 
+                  </ul>
+                </li>
+              </ul>
+          </div>
+        </div><!--/.container -->
+      </nav>   
+   
+
+<!--main-->   
+<div class="container-fluid main-full">
+<div class="container main">
+      <div class="panel panel-default">
+          <div class="panel-body">
+
+        <div class="page-header">
+          <div class="row">
+               <div class="col-xs-6 col-lg-6 ">
+               <h3>Editar Recurso</h3>
+               </div>
+               <div class="col-xs-6 col-lg-6 text-right ">
+               <div class="bt-bar"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historial">Historial  <span class="glyphicon glyphicon-time"></span></button></div>
+            </div>
+           </div>
+        </div>
+      
+          <div class="row">
+            <div class="col-xs-12 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-file"></span>Datos Generales</div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label for="usr">Título:</label>
+                    <input type="text" class="form-control" id="title">
+                  </div>
+                  <div class="form-group">
+                    <label for="comment">Descripción:</label>
+                    <textarea class="form-control" rows="11" id="comment"></textarea>
+                  </div>
+                  <hr/>
+                  <div class="form-group" style="width:50%">
+                    <label for="sel1">Tipo de Recurso</label>
+                    <select class="form-control" id="sel1">
+                      <option selected="selected" value="Seleccionar">Seleccionar</option>
+                      <option value="Actividades">Actividades</option>
+                      <option value="Audio">Audio</option>
+                      <option value="Artículo">Artículo</option>
+                      <option value="Biografía">Biografía</option>
+                      <option value="Colección">Colección</option>
+                      <option value="Curso">Curso</option>
+                      <option value="Enlaces">Enlaces</option>
+                      <option value="Entrevista">Entrevista</option>
+                      <option value="Galería de Imágenes">Galería de Imágenes</option>   
+                      <option value="Glosário">Glosário</option>
+                      <option value="Infografía">Infografía</option>
+                      <option value="Juego">Juego</option>
+                      <option value="Libro Electrónico">Libro Electrónico</option>   
+                      <option value="Manual / Tutorial">Manual / Tutorial</option>
+                      <option value="Podcast">Podcast</option>
+                      <option value="Pres. Multimedia">Pres. Multimedia</option>
+                      <option value="Proyecto">Proyecto</option>
+                      <option value="Secuencia Didactica">Secuencia Didactica</option>
+                      <option value="Software">Software</option>
+                      <option value="Video">Video</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-tag"></span>Clasificar Recurso</div>
+                <div class="panel-body">
+                  <div class="row">
+                 <div class="col-xs-12 col-md-1 col-lg-1"><strong>Nivel:</strong></div>
+                  <div class="col-xs-12 col-md-11 col-lg-11">
+                    <table width="100%" cellspacing="0" cellpadding="0" class="small">
+                      <tbody>
+                        <tr>
+                          <td align="center" width="120"><input type="checkbox" name="nivel[]6" value="Inicial"><br>
+                          Inicial</td>
+                          <td align="center" width="120"><input type="checkbox" name="nivel[]6" value="Especial"><br>
+                          Especial</td>
+                          <td align="center" width="120"><input type="checkbox" name="nivel[]6" value="Primario"><br>
+                          Primario</td>
+                          <td align="center" width="120"><input type="checkbox" name="nivel[]6" value="Secundario"><br>
+                          Secundario</td>
+                          <td align="center" width="120"><input type="checkbox" name="nivel[]6" value="Superior"><br>
+                          Superior</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                 </div>
+                </div>
+                <hr>
+                <div class="row">
+                 <div class="col-xs-12 col-md-1 col-lg-1"><strong>Área:</strong></div>
+                  <div class="col-xs-12 col-md-11 col-lg-11">
+                    <table width="100%" cellspacing="0" cellpadding="0" class="small">
+                      <tbody>
+                        <tr>
+                          <td align="center" width="120"><input type="checkbox" name="area[]6" value="Comunicación"><br>
+                          Comunicación</td>
+                          <td align="center" width="120"><input type="checkbox" name="area[]6" value="Ciencias Naturales"><br>
+                          Ciencias Naturales</td>
+                          <td align="center" width="120"><input type="checkbox" name="area[]6" value="Ciencias Sociales"><br>
+                          Ciencias Sociales</td>
+                          <td align="center" width="120"><input type="checkbox" name="area[]6" value="Contabilidad"><br>
+                          Contabilidad</td>
+                          <td align="center" width="120"><input type="checkbox" name="area[]6" value="Matemática"><br>
+                          Matemática</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                   </div>
+                  </div>
+                </div>
+               </div>
+             
+            </div>
+
+ <!--SIDEBAR-->   
+            <div class="col-xs-12 col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-user"></span>Autor/es del Recurso</div>
+                <div class="panel-body">
+                 <div class="row">
+                   <div class="col-xs-12 col-md-4 col-lg-3 small">Autor/es:</div>
+                   <div class="col-xs-9 col-md-6 col-lg-7"><strong>Brusa, Liliana</strong></div>
+                   <div class="col-xs-3 col-md-2 col-lg-2 text-right"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#buscarEst"><span class="glyphicon glyphicon-plus"></span></button></div>
+                 </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-xs-12 col-md-4 col-lg-3 small-text">Establecimiento:</div>
+                   <div class="col-xs-9 col-md-6 col-lg-7"><strong>E.E. TÉCNICO PROF. Y SEC. </strong></div>
+                   <div class="col-xs-3 col-md-2 col-lg-2 text-right"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#buscarEst"><span class="glyphicon glyphicon-search"></span></button></div>
+                 </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-xs-12 col-md-4 col-lg-3 small">Programa:</div>
+                   <div class="col-xs-9 col-md-6 col-lg-7"><strong>Tramas Digitales</strong></div>
+                   <div class="col-xs-3 col-md-2 col-lg-2 text-right"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#buscarEst"><span class="glyphicon glyphicon-search"></span></button></div>
+                 </div>                
+                
+                </div>
+              </div>
+              
+              <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-picture"></span>Imagen Destacada</div>
+                <div class="panel-body small">
+                 <div class="row">
+                   <div class="col-xs-12 col-lg-12 text-center">Si es posible, adjunte una imagen representativa del Recurso.<hr></div>
+                   <div class="col-xs-12 col-lg-12 text-center"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#buscarEst"><span class="glyphicon glyphicon-folder-open"></span> Adjuntar</button></div>
+                 </div>  
+                </div>
+              </div>
+              
+              <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-film"></span>Video Destacado</div>
+                <div class="panel-body text-center small">
+                 <div class="row">
+                   <div class="col-xs-12 col-lg-12">Adjunte un video destacado al Recurso.<hr></div>
+                   <div class="col-xs-12 col-lg-12"><span class="form-group">
+                     <input type="text" class="form-control" id="video" value="Ingrese URL del Video">
+                   </span></div>
+                 </div>  
+                </div>
+              </div>
+              
+               <div class="panel panel-primary">
+                <div class="panel-heading"><span class="glyphicon glyphicon-paperclip"></span>Archivos Adjuntos</div>
+                <div class="panel-body small">
+                 <div class="row">
+                   <div class="col-xs-12 col-lg-12 text-center">Adjunte archivos, fotos, links y/o videos relacionados al recurso.<hr></div>
+                   <div class="col-xs-12 col-lg-12 text-center">
+                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#attachFile"><span class="glyphicon glyphicon-folder-open"></span> Archivo</button>
+                   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#attachLink"><span class="glyphicon glyphicon-link"></span> Link</button>
+                   </div>
+                 </div>  
+                </div>
+              </div>
+              
+           </div>
+         </div>  
+ 
+<!--Botones Pagina -->        
+       <div class="bt-page">
+       <div class="row">        
+         <div class="col-xs-12 col-lg-12">
+          <a href="vista.html"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button></a>
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+          </div>
+          
+       </div>
+       </div>
+            
+</div><!--/.panel-body -->
+</div><!--/.panel-default-->
+</div><!-- /container -->
+</div><!-- /container-fluid -->
+<!--/ main--> 
+
+<!--FOOTER --> 
+<div id="full-footer" class="container-fluid">
+<footer class="container">
+<div class="row">
+  <div id="footerlogos" class="col-xs-12 col-md-6 col-lg-6" style="text-align:left"><img src="imagenes/footer_left.png"></div>
+  <div id="footerlogos" class="col-xs-12 col-md-6 col-lg-6" style="text-align:right"><img src="imagenes/footer_right.png"></div>
+</div>
+</footer>
+</div>
+<div id="full-footer-end" class="container-fluid"><div class="container">GOBIERNO DE SANTA FE | 3 de Febrero 2649 (S3000DEE) |Santa Fe | Teléfono 54 + 342 4506600 | 4506700 | 4506800.</div></div>
+
+
+<!--Modal Historial --> 
+<div class="modal fade" id="historial">
+   <div class="modal-dialog modal-lg">   
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3>Historial del Recurso</h3>
+         </div>
+         <div class="modal-body">
+           
+           <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-clock-o fa-fw"></i> Linea de Eventos
+                        </div>
+                        <div class="panel-body" style="height:500px; overflow:auto">
+                            <ul class="timeline">
+                                <li>
+                                    <div class="timeline-badge success"><i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Recurso Aprobado</h4>
+                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 10/08/2015 </small>- Usuario: <strong>abeutell</strong></small>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>El contenido del recurso y los archivos adjuntos presentan información correcta y completa sobre el tema desarrollado. El material se encuentra listo para la publicación.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
+                                            <hr>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                    <i class="fa fa-gear"></i>  <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Action</a>
+                                                    </li>
+                                                    <li><a href="#">Another action</a>
+                                                    </li>
+                                                    <li><a href="#">Something else here</a>
+                                                    </li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                                        </div>
+                                        <div class="timeline-body">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+         
+
+         </div>
+         <div class="modal-footer">
+            <a href="#" class="btn btn-success">Aceptar</a>
+            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+         </div>
+   	</div>
+   </div>
+</div>
+
+
+
+
+
+
+
+   <!-- Librería jQuery requerida por los plugins de JavaScript
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script> -->
+    
+    
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+                responsive: true,
+				"language": {
+			"sProcessing": "Cargando...",
+			"lengthMenu": "Mostrar _MENU_ Filas",
+			"zeroRecords": "No hubo resultados",
+			"info": "_START_ a _END_ de _TOTAL_",
+			"infoEmpty": "0 filas",
+			"infoFiltered": "(filtradas de _MAX_  filas)",
+			"infoPostFix": "",
+			"search": "Buscar: ",
+			"url": "",
+			"paginate": {
+				"first":    "|<",
+				"previous": "<",
+				"next":     ">",
+				"last":     ">|"
+			}
+		},
+		//"paginationType": "full_numbers",
+        });
+    });
+    </script>
+
+    
+    
+  </body>
+</html>

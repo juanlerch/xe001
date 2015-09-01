@@ -1,0 +1,105 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://xtrem-engine-2015.appspot.com/_ah/api",
+  "name" : "xservice",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://xtrem-engine-2015.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "methods" : {
+    "xservice.hello" : {
+      "path" : "hello/{name}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.labs.xe.server.XService.hello",
+      "request" : {
+        "parameters" : {
+          "name" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "xservice.request" : {
+      "path" : "request",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.labs.xe.server.XService.request",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "XEIDTO" : {
+        "id" : "XEIDTO",
+        "type" : "object",
+        "properties" : {
+          "entryKey" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "relEntryKey" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.labs.xe.server.XService.hello" : {
+        "response" : {
+          "$ref" : "XEIDTO"
+        }
+      },
+      "com.labs.xe.server.XService.request" : {
+        "request" : {
+          "$ref" : "XEIDTO"
+        },
+        "response" : {
+          "$ref" : "XEIDTO"
+        }
+      }
+    }
+  }
+}

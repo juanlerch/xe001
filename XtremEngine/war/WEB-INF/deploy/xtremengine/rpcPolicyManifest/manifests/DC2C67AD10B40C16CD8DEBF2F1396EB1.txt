@@ -1,0 +1,2 @@
+serviceClass: com.labs.xe.client.GreetingService
+path: 1B0B2F74BE8900D7F056A209D4AAB577.gwt.rpc
