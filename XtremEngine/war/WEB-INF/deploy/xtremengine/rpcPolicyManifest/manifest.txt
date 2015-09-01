@@ -1,3 +1,3 @@
 # Module xtremengine
 # RPC service class, partial path of RPC policy file
-com.labs.xe.client.GreetingService, E2B2EEAD01C633F509DD192EB5869025.gwt.rpc
+com.labs.xe.client.GreetingService, 1B0B2F74BE8900D7F056A209D4AAB577.gwt.rpc
