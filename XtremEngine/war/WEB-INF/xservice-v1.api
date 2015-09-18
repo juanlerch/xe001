@@ -68,13 +68,13 @@
         "id" : "XEIDTO",
         "type" : "object",
         "properties" : {
-          "entryKey" : {
+          "relEntryKey" : {
             "type" : "array",
             "items" : {
               "type" : "string"
             }
           },
-          "relEntryKey" : {
+          "entryKey" : {
             "type" : "array",
             "items" : {
               "type" : "string"
